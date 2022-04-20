@@ -1,0 +1,14 @@
+﻿<?php 
+	$conn = mysqli_connect ("mysql.hostinger.vn","u992959592_sql","lonelyboy1995","u992959592_sql") or die ('Không thể kết nối cơ sở dữ liệu');
+	mysqli_set_charset($conn,"utf8");
+?>
+
+Import data trong sql\sqlmypham.sql
+
+
+Cấu hình file index\connect.php
+
+
+Link admin: \admin\admin.php
+
+Tài khoản: admin/admin
