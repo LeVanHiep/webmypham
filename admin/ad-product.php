@@ -138,6 +138,7 @@ $(document).ready(function() {
 <div class="right_barr">
 	<div class="htsp">
     	<ul class="ulhtsp">
+			<li class="imgv">HÌNH ẢNH</li>
         	<li class="spp">SẢN PHẨM</li>
             <li class="g">GIÁ</li>
             <li class="lsp">LOẠI SP</li>
@@ -176,7 +177,10 @@ $(document).ready(function() {
 					{
 				?>
                 		<ul class="ulhtsp">
-                            <li class="spp"><a><img src="../images/<?php echo $row['image_product']; ?>" class="imgcc"/></a>
+							<li class="imgv">
+								<a><img src="../images/<?php echo $row['image_product']; ?>" class="imgcc"/></a>
+							</li>
+                            <li class="spp">
                                 <?php echo $row['name_product']; ?>
                             </li>
                             <li class="g"><?php echo number_format($row['price_product']); ?></li>

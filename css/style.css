@@ -275,7 +275,7 @@ img.uudai {
 }
 .image_figure img
 {
-	width:300px
+	width:300px;
 	height: 154px;
 }
 .figure
@@ -1845,13 +1845,13 @@ a.register {
 }
 .right_bar {
     float: right;
-    background: brown;
+    background:dimgray;
     width: 1096px;
     height: 707px;
 }
 .right_barr {
     float: right;
-    background: brown;
+    background:dimgray;
     width: 1096px;
     height: auto;
 }
@@ -1980,6 +1980,9 @@ a.back
 .htsp {
     color: #fff;
 }
+li.imgv{
+    width: 80px;
+}
 li.spp
 {
 	width:200px;
@@ -1990,9 +1993,9 @@ ul.ulhtsp li {
     border: 1px solid #fff;
 }
 .imgcc
-{
-	float:left;
-	width:40px;
+{   
+    float: left;
+	width:50px;
 }
 li.ed
 {

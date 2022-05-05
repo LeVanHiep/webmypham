@@ -201,10 +201,7 @@ if (!isset($_SESSION['username'])) {
 							$xoa_menu = mysqli_query($conn,"UPDATE menu SET name_menu=N'".$tenmoi."' WHERE id_menu =".$xoa."");
 							
 						}
-					?>
-                    
-                    
-                    
+					?>     
             </fieldset>
         </form>
     </div><!--change_menu_-->
