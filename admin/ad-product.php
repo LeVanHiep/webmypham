@@ -118,34 +118,22 @@ $(document).ready(function() {
 <div class="containerR">
 
             <ul id="nav">
-                <li><a href="#" class="sub">Header</a>
+                <li><a href="#" class="sub">Quản lí trang web</a><img src="images/up.gif" alt="" />
                		 <ul>
-                        <li><a href="change-logo.php">Thay đổi logo web</a></li>
+                        <li><a href="change-logo.php">Thay đổi logo</a></li>
                         <li><a href="change-menu.php">Thay đổi menu web</a></li>
                         <li><a href="change-banner.php">Thay đổi banner web</a></li>
                     </ul>
                 </li>
-                <li><a href="ad-product.php" class="sub" tabindex="1">Product</a><img src="images/up.gif" alt="" />
+                <li><a href="ad-product.php" class="sub" tabindex="1">Quản lí sản phẩm</a><img src="images/up.gif" alt="" />
                     <ul>
                         <li><a href="add-product.php" >Thêm sản phẩm</a></li>
-                        <li><a href="ad-product.php" >Xóa / sửa</a></li>
+                        <li><a href="ad-product.php" >Danh sách sản phẩm</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="sub" tabindex="1">jQuery/JS</a><img src="images/up.gif" alt="" />
-                    <ul>
-                        <li><a href="#">Link 6</a></li>
-                        <li><a href="#">Link 7</a></li>
-                        <li><a href="#">Link 8</a></li>
-                        <li><a href="#">Link 9</a></li>
-                        <li><a href="#">Link 10</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">PHP</a></li>
-                <li><a href="#">MySQL</a></li>
-                <li><a href="#">XSLT</a></li>
             </ul>
 
-    </div>
+        </div>
 </div><!--end adleftbar-->
 <div class="right_barr">
 	<div class="htsp">

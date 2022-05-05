@@ -216,7 +216,7 @@ $(document).ready(function() {
         <!--END ĐĂNG NHẬP-->
        	<div class="hotline">
         	<div class="ptittle">Hotline:</div><!--ptille-->
-            <div class="pdetail">0868896944 - 0944104004</div><!--pdetail-->
+            <div class="pdetail">0396646090 - 0123456789</div><!--pdetail-->
         </div><!--hotline-->
         
         
@@ -229,7 +229,7 @@ $(document).ready(function() {
         	<?php
 				$menu_query = "SELECT * FROM menu";
 				$menu_result = mysqli_query($conn,$menu_query) or die ('Cannot connect table!'.mysqli_error($conn));
-		
+
 				while ($menu_items = mysqli_fetch_array($menu_result,MYSQLI_ASSOC))
 				{
 					$submenu_query = "  SELECT * 
@@ -260,8 +260,7 @@ $(document).ready(function() {
 		
 					echo "<div class='menu_leve_1'><a href = '".$menu_items['link_menu']."' class='parent'>".$menu_items['name_menu']."</a>
 					<ul class='menuHiden' style='display: none;margin-bottom: 0px;margin-top: 0px;padding-left: 0px;padding-H:10px;'>";
-						
-						
+					
 						if($menu_items["name_menu"] == 'Mỹ Phẩm')
 						{
 							echo "<li class='active'><a href='san-pham/cham-soc-da-mat.php'><br/>CHĂM SÓC DA MẶT</a>
@@ -334,13 +333,6 @@ $(document).ready(function() {
 									</ul>
 									</li>";
 							}
-							else
-							{}
-						
-						
-							
-							
-					
 						//END WHILE $submenu_items
 						
 						/*while ($sub_csbd_items =mysqli_fetch_array($sub_csbd_res,MYSQLI_ASSOC))
@@ -722,16 +714,16 @@ $(document).ready(function() {
             </ul>
         </div><!--end link-->
         <div class="link call"> Tổng đài tư vấn bán hàng (7:30 - 22:00) hằng ngày<br/>
-        	<span class="tongtaituphone">0868896944(Long) - 0944104004(Mr Sơn)</span><!--end tongdaituphone--><br/>
+        	<span class="tongtaituphone"></span><!--end tongdaituphone--><br/>
             Điện thoại
-            <span class="tongtaituphone">0868896944(Long) - 0944104004(Sơn)</span><!--end tongdaituphone--><br/>
+            <span class="tongtaituphone">0396646090 - Nguyễn Đức Vân</span><!--end tongdaituphone--><br/>
             Giải quyết khiếu nại từ (9:00 - 17:00) hằng ngày
-            <span class="tongtaituphone">0868896944(Long) - 0944104004(Sơn)</span><!--end tongdaituphone-->
+            <span class="tongtaituphone">0396646090 - Nguyễn Đức Vân</span><!--end tongdaituphone-->
         </div><!--end link call-->
     </div><!--end container footer-->
     <div class="clear"></div><!--end clear-->
-    <div class="footerAdd"> © 2016. Công Ty Mỹ Phẩm MTL<br/>
-    Địa chỉ : 624 âu cơ,quận tân phú,TPHCM .
+    <div class="footerAdd"> © 2022. Công Ty Mỹ Phẩm HMV<br/>
+    Địa chỉ : Phường Minh Khai, Quận Bắc Từ Liêm, Thành Phố Hà Nội.
     
     </div><!--end footeradd-->
     <div class="footeraou"></div><!--footeraou-->
