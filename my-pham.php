@@ -454,16 +454,16 @@ $(function() {
             </ul>
         </div><!--end link-->
         <div class="link call"> Tổng đài tư vấn bán hàng (7:30 - 22:00) hằng ngày<br/>
-        	<span class="tongtaituphone">0984 114 827(Long) - 0973 367 087(Mẩn)</span><!--end tongdaituphone--><br/>
+        	<span class="tongtaituphone"></span><!--end tongdaituphone--><br/>
             Điện thoại
-            <span class="tongtaituphone">0984 114 827(Long) - 0973 367 087(Mẩn)</span><!--end tongdaituphone--><br/>
+            <span class="tongtaituphone">0396646090 - Nguyễn Đức Vân</span><!--end tongdaituphone--><br/>
             Giải quyết khiếu nại từ (9:00 - 17:00) hằng ngày
-            <span class="tongtaituphone">0984 114 827(Long) - 0973 367 087(Mẩn)</span><!--end tongdaituphone-->
+            <span class="tongtaituphone">0396646090 - Nguyễn Đức Vân</span><!--end tongdaituphone-->
         </div><!--end link call-->
     </div><!--end container footer-->
     <div class="clear"></div><!--end clear-->
-    <div class="footerAdd"> © 2016. Công Ty Mỹ Phẩm MTL<br/>
-    Địa chỉ : 624 âu cơ,quận tân phú,TPHCM .
+    <div class="footerAdd"> © 2022. Công Ty Mỹ Phẩm HMV<br/>
+    Địa chỉ : Phường Minh Khai, Quận Bắc Từ Liêm, Thành Phố Hà Nội.
     
     </div><!--end footeradd-->
     <div class="footeraou"></div><!--footeraou-->
