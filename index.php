@@ -398,8 +398,7 @@ $(document).ready(function() {
              <li class="dg"><?php echo number_format($rows['price_product']);?> VNĐ</li>
             <li class="sl"> <input type="text" name ="num[<?php echo $rows['id_product']; ?>]" value="<?php echo $_SESSION['cart'][$rows['id_product']]; ?>" size="3" class="capnhatCartTxt"/></li>
             <li class="tt"><?php echo number_format($rows['price_product']*$_SESSION['cart'][$rows['id_product']]); ?> VNĐ</li>
-            </ul>
-            
+            </ul>    
     <?php			
             }
         }
