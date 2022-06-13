@@ -140,11 +140,11 @@ if (!isset($_SESSION['username'])) {
     <p class="huongdan">Hướng dẩn: Chọn hình ảnh và ấn Upload để thêm sản phẩm</p>
     <form action="add-product.php" method="post" name="form_logo" enctype="multipart/form-data">
     	<div class="add_image">
-        	Tên sản phẩm: <input type="text" name="tensp" size="20" class="tensp" id="add_"><br/>
+        	Tên sản phẩm: <input type="text" name="tensp" size="20" class="tensp" id="add_" value="<?php echo $name;?>"><br/>
         	Chọn hình ảnh:<input type="file" name="file" size="20" class="upload_logo" id="add_"><br/>
             <div class="gt">
             
-            <br/>Miêu tả: <textarea cols="20" rows="5" name="mieuta" class="mt" id="add_"></textarea><br/>
+            <br/>Miêu tả: <textarea cols="20" rows="5" name="mieuta" class="mt" id="add_" value="<?php echo $mieuta;?>"></textarea><br/>
             <p>Giá: <input type="text" name="gia" size="5" class="gia" id="add_"></p>
             Loại sản phẩm: <input type="text" name="lsp" size="15" class="lsp"  id="add_"><br/>
             <br/>Sử dụng cho: <input type="text" name="sdc" size="15" class="sdc" id="add_"><br/>

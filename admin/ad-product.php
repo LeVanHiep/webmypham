@@ -147,7 +147,6 @@ $(document).ready(function() {
             <li class="xx">XUẤT XỨ</li>
             <li class="qc">QUY CÁCH</li>
             <li class="tt">TÌNH TRẠNG</li>
-            <li class="tk">TỒN KHO</li>
             <li class="ed">XÓA / SỬA</li>
         </ul>
         
@@ -190,7 +189,6 @@ $(document).ready(function() {
                             <li class="xx"><?php echo $row['xuatxu']; ?></li>
                             <li class="qc"><?php echo $row['quy_cach']; ?></li>
                             <li class="tt"><?php echo $row['tinh_trang']; ?></li>
-                            <li class="tk">aaaaaa</li>
                             <li class="ed">
                             	<a onclick="return confirmc()" href="del-pd.php?id=<?php echo $row['id_product'];?>" class="del"></a>
                             	<a href="change-pd.php?id=<?php echo $row['id_product'];?>" class="sua"></a>
@@ -200,6 +198,7 @@ $(document).ready(function() {
 					}
 				?>
 
+<!--
             <div class="phan_trang">
             	<?php
                 	if($current_page > 1 && $total_page > 1)
@@ -229,7 +228,8 @@ $(document).ready(function() {
 					}
 					
 				?>
-            </div><!--end phan_page-->
+            </div>end phan_page
+-->
         
         
     </div><!--end htsp-->

@@ -430,15 +430,40 @@ $(document).ready(function() {
 <div class="re-gis">
 	<h1 class="DKTT"> ĐĂNG KÝ THÀNH VIÊN</h1>
     <form action="register.php" method="post" name="formdk">
-    	Họ và tên:    <input type="text" name="ht" class="ht" /> <br/>
-    	<br/>Tên đăng nhập:<input type="text" name="tendn" class="tdn"/><br/>
-        <br/>Mật khẩu:<input type="password" name="pw" class="pw"/> <br/>
-        <br/>Xác nhận mật khẩu:<input type="password" name="xnpw" class="xnpw"/><br/>
-        <br/>Điện thoại:<input type="text" name="sdt" class="sdt"/><br/>
-        <br/>Địa chỉ giao hàng:<input type="text" name="dcgh" class="dcgh"/><br/>
-        <br/>Giới tính:<input type="radio" name="gt" value="Nam" class="gt"/>Nam <input type="radio" name="gt" value="Nữ" class="gt"/>Nữ<br/>
-        <input type="submit" name="sbmit" value="Đăng ký">
-        <input type="reset" name="rs" value="Reset">
+		<table>
+			<tr>
+				<td>Họ và tên: </td>
+				<td><input type="text" name="ht" class="ht" /></td>
+			</tr>
+			<tr>
+				<td>Tên đăng nhập: </td>
+				<td><input type="text" name="tendn" class="tdn"/></td>
+			</tr>
+			<tr>
+				<td>Mật khẩu: </td>
+				<td><input type="password" name="pw" class="pw"/></td>
+			</tr>
+			<tr>
+				<td>Xác nhận mật khẩu: </td>
+				<td><input type="password" name="xnpw" class="xnpw"/></td>
+			</tr>
+			<tr>
+				<td>Điện thoại: </td>
+				<td><input type="text" name="sdt" class="sdt"/></td>
+			</tr>
+			<tr>
+				<td>Địa chỉ giao hàng: </td>
+				<td><input type="text" name="dcgh" class="dcgh"/></td>
+			</tr>
+			<tr>
+				<td>Giới tính: </td>
+				<td><input type="radio" name="gt" value="Nam" class="gt"/>Nam &nbsp; <input type="radio" name="gt" value="Nữ" class="gt"/>Nữ</td>
+			</tr>
+			<tr>
+				<th colspan="3"><input type="submit" name="sbmit" value="Đăng ký">
+        <input type="reset" name="rs" value="Reset"></th>
+			</tr>
+		</table>
     </form>
     <?php
     	if(isset($_POST['sbmit']))

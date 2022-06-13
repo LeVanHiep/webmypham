@@ -2088,15 +2088,15 @@ input.qc
 }
 .re-gis
 {
-	    width: 1170px;
-    margin: -47px auto 0;
+	width: 300px;
+    margin: 0 auto ;
 }
 .DKTT
 {
 	text-align:center;
 }
 .set_cart {
-    margin: -41px auto 0;
+    margin: 0 auto 0;
     width: 1170px;
 }
 span.ttkh {

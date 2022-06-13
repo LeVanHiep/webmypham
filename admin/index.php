@@ -27,6 +27,7 @@ if (!isset($_SESSION['username'])) {
 <link rel="stylesheet" type="text/css" href="../css/style.css"/>
 <link rel="stylesheet" type="text/css" href="../css/reset.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js' type='text/javascript'></script>
 <title>Mỹ phẩm cao cấp | Chính hãng</title>
 <script>	
 	$(document).ready(function() {
@@ -116,14 +117,14 @@ if (!isset($_SESSION['username'])) {
 <div class="containerR">
 
             <ul id="nav">
-                <li><a href="#" class="sub">Quản lí trang web</a><img src="images/up.gif" alt="" />
+                <li><a href="#" class="sub">Quản lí trang web</a>
                		 <ul>
                         <li><a href="change-logo.php">Thay đổi logo</a></li>
                         <li><a href="change-menu.php">Thay đổi menu web</a></li>
                         <li><a href="change-banner.php">Thay đổi banner web</a></li>
                     </ul>
                 </li>
-                <li><a href="ad-product.php" class="sub" tabindex="1">Quản lí sản phẩm</a><img src="images/up.gif" alt="" />
+                <li><a href="ad-product.php" class="sub" tabindex="1">Quản lí sản phẩm</a>
                     <ul>
                         <li><a href="add-product.php" >Thêm sản phẩm</a></li>
                         <li><a href="ad-product.php" >Danh sách sản phẩm</a></li>
