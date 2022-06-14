@@ -116,17 +116,18 @@ if (!isset($_SESSION['username'])) {
 <div class="containerR">
 
             <ul id="nav">
-                <li><a href="#" class="sub">Quản lí trang web</a><img src="images/up.gif" alt="" />
+                <li><a href="#" class="sub">Quản lí trang web</a>
                		 <ul>
                         <li><a href="change-logo.php">Thay đổi logo</a></li>
                         <li><a href="change-menu.php">Thay đổi menu web</a></li>
                         <li><a href="change-banner.php">Thay đổi banner web</a></li>
                     </ul>
                 </li>
-                <li><a href="ad-product.php" class="sub" tabindex="1">Quản lí sản phẩm</a><img src="images/up.gif" alt="" />
+                <li><a href="#" class="sub">Quản lí sản phẩm</a>
                     <ul>
+						<li><a href="ad-product.php" >Danh sách sản phẩm</a></li>
                         <li><a href="add-product.php" >Thêm sản phẩm</a></li>
-                        <li><a href="ad-product.php" >Danh sách sản phẩm</a></li>
+                        
                     </ul>
                 </li>
             </ul>

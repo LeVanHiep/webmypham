@@ -198,7 +198,7 @@ $(document).ready(function() {
 		</div><!--end login-->
        	<div class="hotline">
         	<div class="ptittle">Hotline:</div><!--ptille-->
-            <div class="pdetail">0984 114 827 - 0973 367 087</div><!--pdetail-->
+            <div class="pdetail">039 664 6090 - 123 456 7890</div><!--pdetail-->
             
         </div><!--hotline-->
      </div><!--end container-->
@@ -509,11 +509,14 @@ $(document).ready(function() {
             Điện thoại
             <span class="tongtaituphone">0396646090 - Nguyễn Đức Vân</span><!--end tongdaituphone--><br/>
             Giải quyết khiếu nại từ (9:00 - 17:00) hằng ngày
-            <span class="tongtaituphone">0396646090 - Nguyễn Đức Vân</span><!--end tongdaituphone-->
+           
         </div><!--end link call-->
+		<div class="address">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.5155634190037!2d105.73587971424573!3d21.0520609923599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454f777de8cad%3A0xef948a65db9e4dce!2zMTEyLCAxMCBQaOG7kSBOZ3V5w6puIFjDoSwgTWluaCBLaGFpLCBU4burIExpw6ptLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1645251043612!5m2!1svi!2s" width="370px" height="180px" frameborder="0" style="border:1px solid white;border-radius: 10px 10px 10px 10px;" allowfullscreen></iframe>				
+						</div>
     </div><!--end container footer-->
     <div class="clear"></div><!--end clear-->
-    <div class="footerAdd"> © 2022. Công Ty Mỹ Phẩm HMV<br/>
+    <div class="footerAdd"> ©2022. Công Ty Mỹ Phẩm HMV<br/>
     Địa chỉ : Phường Minh Khai, Quận Bắc Từ Liêm, Thành Phố Hà Nội.
     
     </div><!--end footeradd-->

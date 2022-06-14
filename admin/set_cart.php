@@ -198,7 +198,7 @@ $(document).ready(function() {
 		</div><!--end login-->
        	<div class="hotline">
         	<div class="ptittle">Hotline:</div><!--ptille-->
-            <div class="pdetail">0984 114 827 - 0973 367 087</div><!--pdetail-->
+            <div class="pdetail">039 664 6090 - 123 456 7890</div><!--pdetail-->
             
         </div><!--hotline-->
      </div><!--end container-->
@@ -540,7 +540,6 @@ $sum_sp += $_SESSION['cart'][$rows['id_product']];
             Điện thoại
             <span class="tongtaituphone">0396646090 - Nguyễn Đức Vân</span><!--end tongdaituphone--><br/>
             Giải quyết khiếu nại từ (9:00 - 17:00) hằng ngày
-            <span class="tongtaituphone">0396646090 - Nguyễn Đức Vân</span><!--end tongdaituphone-->
         </div><!--end link call-->
     </div><!--end container footer-->
     <div class="clear"></div><!--end clear-->

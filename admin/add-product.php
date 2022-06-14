@@ -117,17 +117,17 @@ if (!isset($_SESSION['username'])) {
 <div class="containerR">
 
             <ul id="nav">
-                <li><a href="#" class="sub">Quản lí trang web</a><img src="images/up.gif" alt="" />
+                <li><a href="#" class="sub">Quản lí trang web</a>
                		 <ul>
                         <li><a href="change-logo.php">Thay đổi logo</a></li>
                         <li><a href="change-menu.php">Thay đổi menu web</a></li>
                         <li><a href="change-banner.php">Thay đổi banner web</a></li>
                     </ul>
                 </li>
-                <li><a href="ad-product.php" class="sub" tabindex="1">Quản lí sản phẩm</a><img src="images/up.gif" alt="" />
+                <li><a href="#" class="sub">Quản lí sản phẩm</a>
                     <ul>
+						<li><a href="ad-product.php" >Danh sách sản phẩm</a></li>
                         <li><a href="add-product.php" >Thêm sản phẩm</a></li>
-                        <li><a href="ad-product.php" >Danh sách sản phẩm</a></li>
                     </ul>
                 </li>
             </ul>
@@ -140,22 +140,58 @@ if (!isset($_SESSION['username'])) {
     <p class="huongdan">Hướng dẩn: Chọn hình ảnh và ấn Upload để thêm sản phẩm</p>
     <form action="add-product.php" method="post" name="form_logo" enctype="multipart/form-data">
     	<div class="add_image">
-        	Tên sản phẩm: <input type="text" name="tensp" size="20" class="tensp" id="add_"><br/>
-        	Chọn hình ảnh:<input type="file" name="file" size="20" class="upload_logo" id="add_"><br/>
-            <div class="gt">
-            
-            <br/>Miêu tả: <textarea cols="20" rows="5" name="mieuta" class="mt" id="add_"></textarea><br/>
-            <p>Giá: <input type="text" name="gia" size="5" class="gia" id="add_"></p>
-            Loại sản phẩm: <input type="text" name="lsp" size="15" class="lsp"  id="add_"><br/>
-            <br/>Sử dụng cho: <input type="text" name="sdc" size="15" class="sdc" id="add_"><br/>
-            <br/>Thuộc menu: <input type="text" name="tmn" size="15" class="tmn" id="add_"><br/>
-            <br/>Xuất xứ: <input type="text" name="xx" size="15" class="xx" id="add_"><br/>
-           <br/> Quy cách: <input type="text" name="qc" size="15" class="qc" id="add_"><br/>
-            <br/>Tình trạng: <input type="radio" name="1" value="Còn hàng">Còn hàng</input><input type="radio" name="1" value="Hết hàng">Hết hàng</input><br/>
-            Nội dung: <textarea name="noidung" id="editor1" rows="10" cols="80"></textarea>
-            <script>    CKEDITOR.replace( 'editor1' );</script>
-            </div><!--end gt-->
-            <input type="submit" name="ok" value="Upload" class="upload">
+        	<table>
+				<tr>
+					<td>Tên sản phẩm:</td>
+					<td colspan="2"><input type="text" name="tensp" size="60" class="tensp" id="add_" ></td>
+				</tr>
+				<tr>
+					<td >Chọn hình ảnh: </td>
+					<td><img src="../images/<?php echo $row[4];?>" id="img_thumbnail" alt=""/>
+					</td>
+					<td><input type="file" name="file" size="20" class="upload_logo" id="thumbnail" ></td>
+				</tr>
+				<tr>
+					<td>Miêu tả:</td>
+					<td colspan="2"><textarea cols="62" style="margin-left: 0px" rows="5" name="mieuta" class="mt" id="add_"></textarea></td>
+				</tr>
+				<tr>
+					<td>Giá:</td>
+					<td colspan="2"><input type="text" style="margin-left: 0px" name="gia" size="5" class="gia" id="add_" > VNĐ</td>
+				</tr>
+				<tr>
+					<td>Loại sản phẩm:</td>
+					<td colspan="2"><input type="text" style="margin-left: 0px" name="lsp" size="15" class="lsp"  id="add_" ></td>
+				</tr>
+				<tr>
+					<td>Sử dụng cho:</td>
+					<td colspan="2"><input type="text" style="margin-left: 0px" name="sdc" size="15" class="sdc" id="add_" ></td>
+				</tr>
+				<tr>
+					<td>Thuộc menu:</td>
+					<td colspan="2"><input type="text" style="margin-left: 0px" name="tmn" size="15" class="tmn" id="add_" ></td>
+				</tr>
+				<tr>
+					<td>Xuất xứ:</td>
+					<td colspan="2"><input type="text" name="xx" style="margin-left: 0px" size="15" class="xx" id="add_" ></td>
+				</tr>
+				<tr>
+					<td>Quy cách:</td>
+					<td colspan="2"><input type="text" style="margin-left: 0px" name="qc" size="15" class="qc" id="add_" ></td>
+				</tr>
+				<tr>
+					<td>Tình trạng:</td>
+					<td colspan="2"><input type="radio" name="1" value="Còn hàng">Còn hàng</input><input type="radio" name="1" value="Hết hàng">Hết hàng</input></td>
+				</tr>
+				<tr>
+					<td>Nội dung:</td>
+					<td colspan="2"><textarea name="noidung" id="editor1" rows="10" cols="80"></textarea>
+            			<script>CKEDITOR.replace( 'editor1' );</script></td>
+				</tr>
+				<tr>
+					<th colspan="3" align="center"><input type="submit" name="ok" value="Lưu" class="upload"></th>
+				</tr>
+			</table>
             
         </div>
     </form>

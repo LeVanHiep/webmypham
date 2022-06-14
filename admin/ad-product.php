@@ -118,17 +118,18 @@ $(document).ready(function() {
 <div class="containerR">
 
             <ul id="nav">
-                <li><a href="#" class="sub">Quản lí trang web</a><img src="images/up.gif" alt="" />
+                <li><a href="#" class="sub">Quản lí trang web</a>
                		 <ul>
                         <li><a href="change-logo.php">Thay đổi logo</a></li>
                         <li><a href="change-menu.php">Thay đổi menu web</a></li>
                         <li><a href="change-banner.php">Thay đổi banner web</a></li>
                     </ul>
                 </li>
-                <li><a href="ad-product.php" class="sub" tabindex="1">Quản lí sản phẩm</a><img src="images/up.gif" alt="" />
+                <li><a href="#" class="sub">Quản lí sản phẩm</a>
                     <ul>
+						<li><a href="ad-product.php" >Danh sách sản phẩm</a></li>
                         <li><a href="add-product.php" >Thêm sản phẩm</a></li>
-                        <li><a href="ad-product.php" >Danh sách sản phẩm</a></li>
+                        
                     </ul>
                 </li>
             </ul>
@@ -198,12 +199,11 @@ $(document).ready(function() {
 					}
 				?>
 
-<!--
             <div class="phan_trang">
             	<?php
                 	if($current_page > 1 && $total_page > 1)
 					{
-						echo "<a href='my-pham.php?page=".($current_page - 1)."'>
+						echo "<a href='ad-product.php?page=".($current_page - 1)."'>
 								<b class='prev'></b>
 							</a>";
 					}
@@ -216,20 +216,20 @@ $(document).ready(function() {
 							echo "<li><span class='color_current'>".$i."</span></li>";
 						}
 						else
-						echo "<li><a href='my-pham.php?page=".$i."'>".$i."</a></li>";
+						echo "<li><a href='ad-product.php?page=".$i."'>".$i."</a></li>";
 						
 					}
 					echo"</ul>";
 					if($current_page < $total_page  && $total_page > 1)
 					{
-						echo "<a href='my-pham.php?page=".($current_page + 1)."'>
+						echo "<a href='ad-product.php?page=".($current_page + 1)."'>
 							<b class='next'></b>
 						</a>";
 					}
 					
 				?>
-            </div>end phan_page
--->
+            </div>
+<!--		end phan_page-->
         
         
     </div><!--end htsp-->

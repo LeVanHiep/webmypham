@@ -553,7 +553,6 @@ $(document).ready(function() {
             Điện thoại
             <span class="tongtaituphone">0396646090 - Nguyễn Đức Vân</span><!--end tongdaituphone--><br/>
             Giải quyết khiếu nại từ (9:00 - 17:00) hằng ngày
-            <span class="tongtaituphone">0396646090 - Nguyễn Đức Vân</span><!--end tongdaituphone-->
         </div><!--end link call-->
     </div><!--end container footer-->
     <div class="clear"></div><!--end clear-->
