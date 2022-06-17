@@ -102,7 +102,7 @@ $(document).ready(function() {
             </a>
         </div><!--end logo-->
     	<div class="search">
-        	<form class="searchform" action="index/search.php" method="get">
+        	<form class="searchform" action="search.php" method="get">
 			<input class="s" onfocus="if (this.value == 'Tìm kiếm …') {this.value = '';}" onblur="if (this.value == '') {this.value =		 		'Tìm kiếm …';}" type="text" name="timkiem" value="Tìm kiếm …" width="300px" />
         	<button class="searchsubmit" name="btTimkiem" type="submit" value=""> </button>
 			</form>
