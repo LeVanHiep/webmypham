@@ -155,14 +155,14 @@ $(document).ready(function() {
 ?>
         <div class="login">
         <?php
-			$sql_query =mysqli_query($conn, "select * from account where user_name=".$_SESSION['user_name']);
+			$sql_query =mysqli_query($conn, "select * from account where user_name=".$_SESSION['username']);
 			$sql_it = mysqli_fetch_array($sql_query);
 			$level = $sql_it['level'];
         	if (isset($_SESSION['username']))
 			{
 				if($level == '1')
 				{
-					echo '<a href="http://localhost/webmypham/admin/index.php" style="display:block; !important;" class="xinchao">Xin chào: '.$_SESSION['user_name'].'
+					echo '<a href="http://localhost/webmypham/admin/index.php" style="display:block; !important;" class="xinchao">Xin chào: '.$_SESSION['username'].'
 				<div class="hv_member">
           		<span class="exit"><a href="admin/logout.php">Đăng xuất</a></span>
          		 </div><!--end member-->
@@ -171,7 +171,7 @@ $(document).ready(function() {
 				else
 				{
 					
-					echo '<a href="#" style="display:block; !important;" class="xinchao">Xin chào: '.$_SESSION['user_name'].'
+					echo '<a href="#" style="display:block; !important;" class="xinchao">Xin chào: '.$_SESSION['username'].'
 				<div class="hv_member">
           		<span class="exit"><a href="admin/logout.php">Đăng xuất</a></span>
          		 </div><!--end member-->
@@ -181,7 +181,7 @@ $(document).ready(function() {
 			}
 			else
 			{
-				echo '<a href="admin/index.php" style="display:none; !important;" class="xinchao">Xin chào:'.$_SESSION['user_name'].'</a>';
+				echo '<a href="admin/index.php" style="display:none; !important;" class="xinchao">Xin chào:'.$_SESSION['username'].'</a>';
 				echo '<a href="#login-box" class="login-window" style="display:block !important;">Đăng nhập/Đăng ký</a>
 ';
 
@@ -217,7 +217,7 @@ $(document).ready(function() {
         <!--END ĐĂNG NHẬP-->
        	<div class="hotline">
         	<div class="ptittle">Hotline:</div><!--ptille-->
-            <div class="pdetail">0396646090 - 0123456789</div><!--pdetail-->
+            <div class="pdetail">039 664 6090 - 012 345 6789</div><!--pdetail-->
         </div><!--hotline-->
         
         
@@ -690,9 +690,9 @@ $(document).ready(function() {
     	<div class="container">
         	<div class="connect">
             	KẾT NỐI VỚI MTL
-                <a title="Facebook Lữ Quí Long" href="https://www.facebook.com/Long.Lee123" rel="nofollow" target="_blank" class="fb"></a>
-                <a title="Google+ Lữ Quí Long" href="https://plus.google.com/u/1/110437871752923052188/posts" rel="nofollow" target="_blank" class="gg"></a>
-                <a title="Youtube Lữ Quí Long" href="https://www.youtube.com/channel/UC57CLyFw6NgFBLzlscQReUg" rel="nofollow" target="_blank" class="ytb"></a>
+                <a title="Facebook" href="#" rel="nofollow" target="_blank" class="fb"></a>
+                <a title="Google+" href="#" rel="nofollow" target="_blank" class="gg"></a>
+                <a title="Youtube" href="#" rel="nofollow" target="_blank" class="ytb"></a>
                 <div class="backtop">
     				<b></b>
 				</div><!--end backtop-->

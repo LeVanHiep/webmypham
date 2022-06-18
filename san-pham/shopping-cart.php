@@ -101,7 +101,7 @@ $(document).ready(function() {
 			?></a>
         </div><!--end logo-->
     	<div class="search">
-        	<form class="searchform" action="../index/search.php" method="get">
+        	<form class="searchform" action="../search.php" method="get">
 			<input class="s" onfocus="if (this.value == 'Tìm kiếm …') {this.value = '';}" onblur="if (this.value == '') {this.value =		 		'Tìm kiếm …';}" type="text" name="timkiem" value="Tìm kiếm …" width="300px" />
         	<button class="searchsubmit" name="btTimkiem" type="submit" value=""> </button>
 			</form>
@@ -212,7 +212,7 @@ $(document).ready(function() {
 		</div><!--end login-->
        	<div class="hotline">
         	<div class="ptittle">Hotline:</div><!--ptille-->
-            <div class="pdetail">0984 114 827 - 0973 367 087</div><!--pdetail-->
+            <div class="pdetail">039 664 6090 - 012 345 6789</div><!--pdetail-->
             
         </div><!--hotline-->
      </div><!--end container-->
@@ -531,11 +531,16 @@ $sum_sp += $_SESSION['cart'][$rows['id_product']];
 	<div class="homeEmail">
     	<div class="container">
         	<div class="connect">
-            	KẾT NỐI VỚI MTL
-                <a title="Facebook Lữ Quí Long" href="https://www.facebook.com/Long.Lee123" rel="nofollow" target="_blank" class="fb"></a>
-                <a title="Google+ Lữ Quí Long" href="https://plus.google.com/u/1/110437871752923052188/posts" rel="nofollow" target="_blank" class="gg"></a>
-                <a title="Youtube Lữ Quí Long" href="https://www.youtube.com/channel/UC57CLyFw6NgFBLzlscQReUg" rel="nofollow" target="_blank" class="ytb"></a>
+            	KẾT NỐI VỚI HMV
+                <a title="Facebook" href="#" rel="nofollow" target="_blank" class="fb"></a>
+                <a title="Google+" href="#" rel="nofollow" target="_blank" class="gg"></a>
+                <a title="Youtube" href="#" rel="nofollow" target="_blank" class="ytb"></a>
+                <div class="backtop">
+    				<b></b>
+				</div><!--end backtop-->
+            
             </div><!--end connect--->
+            
             
         </div><!--end container footer-->
     </div><!---end homeEmail-->
@@ -550,13 +555,15 @@ $sum_sp += $_SESSION['cart'][$rows['id_product']];
                 
             </ul>
         </div><!--end link-->
-        <div class="link call"> Tổng đài tư vấn bán hàng (7:30 - 22:00) hằng ngày<br/>
+        <div class="link call"> Tổng đài tư vấn bán hàng (7:30 - 22:00) hằng ngày
         	<span class="tongtaituphone"></span><!--end tongdaituphone--><br/>
             Điện thoại
             <span class="tongtaituphone">0396646090 - Nguyễn Đức Vân</span><!--end tongdaituphone--><br/>
             Giải quyết khiếu nại từ (9:00 - 17:00) hằng ngày
-            <span class="tongtaituphone">0396646090 - Nguyễn Đức Vân</span><!--end tongdaituphone-->
         </div><!--end link call-->
+		<div class="address">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.5155634190037!2d105.73587971424573!3d21.0520609923599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454f777de8cad%3A0xef948a65db9e4dce!2zMTEyLCAxMCBQaOG7kSBOZ3V5w6puIFjDoSwgTWluaCBLaGFpLCBU4burIExpw6ptLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1645251043612!5m2!1svi!2s" width="400px" height="180px" frameborder="0" style="border:1px solid white;border-radius: 10px 10px 10px 10px;" allowfullscreen></iframe>				
+						</div>
     </div><!--end container footer-->
     <div class="clear"></div><!--end clear-->
     <div class="footerAdd"> © 2022. Công Ty Mỹ Phẩm HMV<br/>
@@ -564,6 +571,7 @@ $sum_sp += $_SESSION['cart'][$rows['id_product']];
     
     </div><!--end footeradd-->
     <div class="footeraou"></div><!--footeraou-->
+    
 </div><!---end footer-->
 
 </div><!--End Wrapper---> 

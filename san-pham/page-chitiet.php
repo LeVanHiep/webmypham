@@ -52,11 +52,122 @@
             </a>
         </div><!--end logo-->
     	<div class="search">
-        	<form class="searchform" action="../index/search.php" method="get">
+        	<form class="searchform" action="../search.php" method="get">
 			<input class="s" onfocus="if (this.value == 'Tìm kiếm …') {this.value = '';}" onblur="if (this.value == '') {this.value =		 		'Tìm kiếm …';}" type="text" name="timkiem" value="Tìm kiếm …" width="300px" />
         	<button class="searchsubmit" name="btTimkiem" type="submit" value=""> </button>
 			</form>
         </div><!-----end search---->
+		<!--ĐĂNG NHẬP-->
+        
+        
+		<?php
+	if(isset($_POST["btSubmit"]))
+	{
+		$username= $_POST["username"];
+		$password =md5( $_POST["password"]);
+		//lam sach thong tin
+		$username = strip_tags($username);
+		$username = addslashes($username);
+		$password = strip_tags($password);
+		$password = addslashes($password);
+		if ($username == "" || $password =="")
+		{
+			echo '<div id="login-box" class="login-popup" style="display:block;left: 563px;top: 315px;">
+				
+				<a href="" class="close"><img src="../close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+				Không được để trống!
+				</div>
+				<div id="mask" style="display:block;opacity: 0.7 !important;background: #000 !important;"></div>';
+		}
+		else
+		{
+			$sql = "select * from account where user_name = '$username' and password = '$password' ";
+			$query = mysqli_query($conn,$sql);
+			$num_rows = mysqli_num_rows($query);
+			if ($num_rows==0) {
+				echo '<div id="login-box" class="login-popup" style="display:block;left: 495px;top: 315px;">
+				<a href="" class="close"><img src="../close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+				Tên đăng nhập hoặc mật khẩu không đúng !
+				</div>
+				<div id="mask" style="display:block;opacity: 0.7 !important;background: #000 !important;"></div>';
+			}
+			else
+			{
+				//tiến hành lưu tên đăng nhập vào session để tiện xử lý sau này
+				$_SESSION['username'] = $username;
+                // Thực thi hành động sau khi lưu thông tin vào session
+                // ở đây mình tiến hành chuyển hướng trang web tới một trang gọi là index.php
+                header('Location: index.php');
+			}
+		}
+	}
+?>
+        <div class="login">
+        <?php
+			$sql_query =mysqli_query($conn, "select * from account where user_name=".$_SESSION['username']);
+			$sql_it = mysqli_fetch_array($sql_query);
+			$level = $sql_it['level'];
+        	if (isset($_SESSION['username']))
+			{
+				if($level == '1')
+				{
+					echo '<a href="http://localhost/webmypham/admin/index.php" style="display:block; !important;" class="xinchao">Xin chào: '.$_SESSION['username'].'
+				<div class="hv_member">
+          		<span class="exit"><a href="admin/logout.php">Đăng xuất</a></span>
+         		 </div><!--end member-->
+				</a>';
+				}
+				else
+				{
+					
+					echo '<a href="#" style="display:block; !important;" class="xinchao">Xin chào: '.$_SESSION['username'].'
+				<div class="hv_member">
+          		<span class="exit"><a href="admin/logout.php">Đăng xuất</a></span>
+         		 </div><!--end member-->
+				</a>';
+				}
+				echo '<a href="#login-box" class="login-window" style="display:none !important;">Đăng nhập</a><a href="#" style="display:none !important;"> / Đăng ký</a>';
+			}
+			else
+			{
+				echo '<a href="admin/index.php" style="display:none; !important;" class="xinchao">Xin chào:'.$_SESSION['username'].'</a>';
+				echo '<a href="#login-box" class="login-window" style="display:block !important;">Đăng nhập/Đăng ký</a>
+';
+
+			}
+			
+		?>
+
+        </div><!--end login-->
+        <div id="login-box" class="login-popup">
+        	<a href="" class="close"><img src="close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+          <form method="post" class="signin" action="index.php">
+                <fieldset class="textbox">
+            	<label class="username">
+                <span>Tài khoản</span>
+               <input type="text" name="username" id="username" value=""/>
+                </label>
+                
+                <label class="password">
+                <span>Mật khẩu</span>
+                <input type="password" name="password" id="password" value="" />
+                </label>
+                
+                <button class="submit button" type="submit" name="btSubmit">Đăng nhập</button>
+                
+                <p>
+                <a class="forgot" href="#">Quên mật khẩu?</a> <a href="admin/register.php" class="register">Đăng ký</a>
+                </p>
+                </fieldset>
+          </form>
+          
+		</div><!--end login-->
+        
+        <!--END ĐĂNG NHẬP-->
+       	<div class="hotline">
+        	<div class="ptittle">Hotline:</div><!--ptille-->
+            <div class="pdetail">039 664 6090 - 012 345 6789</div><!--pdetail-->
+        </div><!--hotline-->
        	<div class="hotline">
         	<div class="ptittle">Hotline:</div><!--ptille-->
             <div class="pdetail">0984 114 827 - 0973 367 087</div><!--pdetail-->
@@ -312,14 +423,13 @@
                 <div class="proDha">
                 	<div class="btDah">
                     	<span class="bttOp">ĐẶT HÀNG NHANH GIAO HÀNG NGAY</span>
-                        <span class="btBt">Xem hàng tại nhà không mua không sao</span>
                     </div><!--end btDah-->
                     	
                     <div class="btYctuv"> YÊU CẦU TƯ VẤN </div><!--end btYctuv-->
                 </div><!--end proDha-->
                 <div class="goiTongDa">
                 	<i class="icon"></i>GỌI TƯ VẤN
-                    <span>0984 114 827 - 0973 367 087</span>
+                    <span>039 664 6090 - 012 345 6789</span>
                 </div><!--goiTongDa-->
                 <div class="hotroMnd">
                 	<span>Để chuyên viên nhiều kinh nghiệm hỗ trợ bạn cách chăm sóc da cũng như chọn mua sản phẩm phù hợp với tình trạng da của bạn.</span>
@@ -327,12 +437,12 @@
             </aside><!--desProduct-->
             <aside class="ckProduct">
             	<div class="titile">
-                	CAM KẾT KHI MUA HÀNG TẠI <span>MTL.VN</span>
+                	CAM KẾT KHI MUA HÀNG TẠI <span>HMV.VN</span>
                     
                 </div><!--titile-->
                 <div class="deCk deCkTtct">
                 	<span class="icon"></span><!--end icon-->
-                    <span class="ttCK">Nhận hàng trong <b class="30p">30 phút</b> tại TP.Hồ Chí Minh (Thanh toán Tiền mặt hoặc cà thẻ)</span><!--end ttCK-->
+                    <span class="ttCK">Nhận hàng trong <b class="30p">30 phút</b> tại Hà Nội (Thanh toán Tiền mặt hoặc cà thẻ)</span><!--end ttCK-->
                 </div><!--deCk deCkTtct-->
                 <div class="deCk deCkGhMpTq">
                 	<span class="icon"></span><!--end icon-->
@@ -388,7 +498,7 @@
                         <span class="btBt">Chuyên viên sẽ gọi lại và tư vấn cách chăm sóc da tốt nhất cho bạn.</span>
                     </div>
                     <div class="phone_product">
-                    	0984 114 827 - 0973 367 087
+                    	039 664 6090 - 012 345 6789
                     </div>
                     <a href="#" target="_blank" class="detRight_ban_bt">
                     	<img src="../images/f224839c5d5b232bd30c69ef624c028f.png"/>
@@ -408,11 +518,16 @@
 	<div class="homeEmail">
     	<div class="container">
         	<div class="connect">
-            	KẾT NỐI VỚI MTL
-                <a title="Facebook Lữ Quí Long" href="https://www.facebook.com/Long.Lee123" rel="nofollow" target="_blank" class="fb"></a>
-                <a title="Google+ Lữ Quí Long" href="https://plus.google.com/u/1/110437871752923052188/posts" rel="nofollow" target="_blank" class="gg"></a>
-                <a title="Youtube Lữ Quí Long" href="https://www.youtube.com/channel/UC57CLyFw6NgFBLzlscQReUg" rel="nofollow" target="_blank" class="ytb"></a>
+            	KẾT NỐI VỚI HMV
+                <a title="Facebook" href="#" rel="nofollow" target="_blank" class="fb"></a>
+                <a title="Google+" href="#" rel="nofollow" target="_blank" class="gg"></a>
+                <a title="Youtube" href="#" rel="nofollow" target="_blank" class="ytb"></a>
+                <div class="backtop">
+    				<b></b>
+				</div><!--end backtop-->
+            
             </div><!--end connect--->
+            
             
         </div><!--end container footer-->
     </div><!---end homeEmail-->
@@ -427,13 +542,15 @@
                 
             </ul>
         </div><!--end link-->
-        <div class="link call"> Tổng đài tư vấn bán hàng (7:30 - 22:00) hằng ngày<br/>
+        <div class="link call"> Tổng đài tư vấn bán hàng (7:30 - 22:00) hằng ngày
         	<span class="tongtaituphone"></span><!--end tongdaituphone--><br/>
             Điện thoại
             <span class="tongtaituphone">0396646090 - Nguyễn Đức Vân</span><!--end tongdaituphone--><br/>
             Giải quyết khiếu nại từ (9:00 - 17:00) hằng ngày
-            <span class="tongtaituphone">0396646090 - Nguyễn Đức Vân</span><!--end tongdaituphone-->
         </div><!--end link call-->
+		<div class="address">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.5155634190037!2d105.73587971424573!3d21.0520609923599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454f777de8cad%3A0xef948a65db9e4dce!2zMTEyLCAxMCBQaOG7kSBOZ3V5w6puIFjDoSwgTWluaCBLaGFpLCBU4burIExpw6ptLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1645251043612!5m2!1svi!2s" width="400px" height="180px" frameborder="0" style="border:1px solid white;border-radius: 10px 10px 10px 10px;" allowfullscreen></iframe>				
+						</div>
     </div><!--end container footer-->
     <div class="clear"></div><!--end clear-->
     <div class="footerAdd"> © 2022. Công Ty Mỹ Phẩm HMV<br/>
@@ -441,6 +558,7 @@
     
     </div><!--end footeradd-->
     <div class="footeraou"></div><!--footeraou-->
+    
 </div><!---end footer-->
 
 </div><!--End Wrapper---> 
