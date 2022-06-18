@@ -135,67 +135,7 @@ if (!isset($_SESSION['username'])) {
         </div>
 </div><!--end adleftbar-->
 <div class="right_barr">
-	
-	<h1 class="tdlg">THÊM SẢN PHẨM</h1>
-    <p class="huongdan">Hướng dẩn: Chọn hình ảnh và ấn Upload để thêm sản phẩm</p>
-    <form action="add-product.php" method="post" name="form_logo" enctype="multipart/form-data">
-    	<div class="add_image">
-        	<table>
-				<tr>
-					<td>Tên sản phẩm:</td>
-					<td colspan="2"><input type="text" name="tensp" size="60" class="tensp" id="add_" ></td>
-				</tr>
-				<tr>
-					<td >Chọn hình ảnh: </td>
-					<td><img src="../images/<?php echo $row[4];?>" id="img_thumbnail" alt=""/>
-					</td>
-					<td><input type="file" name="file" size="20" class="upload_logo" id="thumbnail" ></td>
-				</tr>
-				<tr>
-					<td>Miêu tả:</td>
-					<td colspan="2"><textarea cols="62" style="margin-left: 0px" rows="5" name="mieuta" class="mt" id="add_"></textarea></td>
-				</tr>
-				<tr>
-					<td>Giá:</td>
-					<td colspan="2"><input type="text" style="margin-left: 0px" name="gia" size="5" class="gia" id="add_" > VNĐ</td>
-				</tr>
-				<tr>
-					<td>Loại sản phẩm:</td>
-					<td colspan="2"><input type="text" style="margin-left: 0px" name="lsp" size="15" class="lsp"  id="add_" ></td>
-				</tr>
-				<tr>
-					<td>Sử dụng cho:</td>
-					<td colspan="2"><input type="text" style="margin-left: 0px" name="sdc" size="15" class="sdc" id="add_" ></td>
-				</tr>
-				<tr>
-					<td>Thuộc menu:</td>
-					<td colspan="2"><input type="text" style="margin-left: 0px" name="tmn" size="15" class="tmn" id="add_" ></td>
-				</tr>
-				<tr>
-					<td>Xuất xứ:</td>
-					<td colspan="2"><input type="text" name="xx" style="margin-left: 0px" size="15" class="xx" id="add_" ></td>
-				</tr>
-				<tr>
-					<td>Quy cách:</td>
-					<td colspan="2"><input type="text" style="margin-left: 0px" name="qc" size="15" class="qc" id="add_" ></td>
-				</tr>
-				<tr>
-					<td>Tình trạng:</td>
-					<td colspan="2"><input type="radio" name="1" value="Còn hàng">Còn hàng</input><input type="radio" name="1" value="Hết hàng">Hết hàng</input></td>
-				</tr>
-				<tr>
-					<td>Nội dung:</td>
-					<td colspan="2"><textarea name="noidung" id="editor1" rows="10" cols="80"></textarea>
-            			<script>CKEDITOR.replace( 'editor1' );</script></td>
-				</tr>
-				<tr>
-					<th colspan="3" align="center"><input type="submit" name="ok" value="Lưu" class="upload"></th>
-				</tr>
-			</table>
-            
-        </div>
-    </form>
-    <?php
+	<?php
     	if(isset($_POST['ok']))// neu bien ok ton tai	
 		{
 			
@@ -248,6 +188,121 @@ if (!isset($_SESSION['username'])) {
 			}
 		}
 	?>
+	<h1 class="tdlg">THÊM SẢN PHẨM</h1>
+    <p class="huongdan">Hướng dẩn: Chọn hình ảnh và ấn Upload để thêm sản phẩm</p>
+	
+    <form action="add-product.php" method="post" name="form_logo" enctype="multipart/form-data">
+    	<div class="add_image">
+        	<table>
+				<tr>
+					<td>Tên sản phẩm:</td>
+					<td colspan="2"><input type="text" name="tensp" size="60" class="tensp" id="add_" required></td>
+				</tr>
+				<tr>
+					<td >Chọn hình ảnh: </td>
+					<td><img src="../images/<?php echo $row[4];?>" id="img_thumbnail" alt=""/>
+					</td>
+					<td><input type="file" name="file" size="20" class="upload_logo" id="thumbnail" ></td>
+				</tr>
+				<tr>
+					<td>Miêu tả:</td>
+					<td colspan="2"><textarea cols="62" style="margin-left: 0px" rows="5" name="mieuta" class="mt" id="add_" required></textarea></td>
+				</tr>
+				<tr>
+					<td>Giá:</td>
+					<td colspan="2"><input type="number" style="margin-left: 0px; width: 143px" name="gia" class="gia" id="add_" required> VNĐ</td>
+				</tr>
+				<tr>
+					<td>Loại sản phẩm:</td>
+<!--
+					<td colspan="2"><input type="text" style="margin-left: 0px" name="lsp" size="15" class="lsp"  id="add_" value="<?php
+						?>">
+-->
+					<td colspan="2">
+						<select name="lsp" class="lsp" id="add_" style="width: 150px">
+							<?php
+								$sql = "SELECT * FROM type_product";
+								$query = mysqli_query($conn, $sql);
+								$num = mysqli_num_rows($query);
+								if($num>0){
+									while($row = mysqli_fetch_array($query)){
+							?>
+							<option value="<?php echo $row['1']?>"><?php echo $row['1']?></option>
+							<?php
+									}
+								}
+							?>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Sử dụng cho:</td>
+					<td colspan="2"><select name="sdc" class="sdc" id="add_" style="width: 150px">
+							<?php
+								$sql = "SELECT * FROM useful_product";
+								$query = mysqli_query($conn, $sql);
+								$num = mysqli_num_rows($query);
+								if($num>0){
+									while($row = mysqli_fetch_array($query)){
+							?>
+							<option value="<?php echo $row['1']?>"><?php echo $row['1']?></option>
+							<?php
+									}
+								}
+							?>
+						</select></td>
+				</tr>
+				<tr>
+					<td>Thuộc menu:</td>
+					<td colspan="2"><select name="tmn" class="tmn" id="add_" style="width: 150px">
+							<?php
+								$sql = "SELECT * FROM `menu` WHERE `name_menu` not in (N'Trang chủ', N'Giới Thiệu')";
+								
+								$query = mysqli_query($conn, $sql);
+								$num = mysqli_num_rows($query);
+								if($num>0){
+									while($row = mysqli_fetch_array($query)){
+							?>
+							<option value="<?php echo $row['1']?>"><?php echo $row['1']?></option>
+							<?php
+									}
+								}
+							?>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Xuất xứ:</td>
+					<td colspan="2"><input type="text" name="xx" style="margin-left: 0px" size="15" class="xx" id="add_" ></td>
+				</tr>
+				<tr>
+					<td>Quy cách:</td>
+					<td colspan="2">
+						<select name="qc" class="qc" id="add_">
+							<option value="100ml">100ml</option>
+							<option value="200ml">200ml</option>
+							<option value="300ml">300ml</option>
+							<option value="400ml">400ml</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Tình trạng:</td>
+					<td colspan="2"><input type="radio" name="1" value="Còn hàng">Còn hàng</input><input type="radio" name="1" value="Hết hàng">Hết hàng</input></td>
+				</tr>
+				<tr>
+					<td>Nội dung:</td>
+					<td colspan="2"><textarea name="noidung" id="editor1" rows="10" cols="80"></textarea>
+            			<script>CKEDITOR.replace( 'editor1' );</script></td>
+				</tr>
+				<tr>
+					<th colspan="3" align="center"><input type="submit" name="ok" value="Lưu" class="upload"></th>
+				</tr>
+			</table>
+            
+        </div>
+    </form>
+    
     
 </div><!--end right_bar-->
 </div><!--End Wrapper---> 

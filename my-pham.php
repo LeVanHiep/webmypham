@@ -364,7 +364,7 @@ $(function() {
 									$current_page = 1;
 								}
 								$start = ($current_page - 1) * $litmit;
-								$result = mysqli_query($conn,"SELECT * FROM product where parent_product =N'Mỹ Phẩm' LIMIT $start, $litmit");
+								$result = mysqli_query($conn,"SELECT * FROM product where parent_product =N'Mỹ Phẩm' ORDER by `id_product` DESC LIMIT $start, $litmit");
 								
 				?>
                 <?php

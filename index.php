@@ -162,7 +162,7 @@ $(document).ready(function() {
 			{
 				if($level == '1')
 				{
-					echo '<a href="admin/admin.php" style="display:block; !important;" class="xinchao">Xin chào: '.$_SESSION['username'].'
+					echo '<a href="http://localhost/webmypham/admin/index.php" style="display:block; !important;" class="xinchao">Xin chào: '.$_SESSION['user_name'].'
 				<div class="hv_member">
           		<span class="exit"><a href="admin/logout.php">Đăng xuất</a></span>
          		 </div><!--end member-->
@@ -170,7 +170,8 @@ $(document).ready(function() {
 				}
 				else
 				{
-					echo '<a href="#" style="display:block; !important;" class="xinchao">Xin chào: '.$_SESSION['username'].'
+					
+					echo '<a href="#" style="display:block; !important;" class="xinchao">Xin chào: '.$_SESSION['user_name'].'
 				<div class="hv_member">
           		<span class="exit"><a href="admin/logout.php">Đăng xuất</a></span>
          		 </div><!--end member-->
@@ -180,7 +181,7 @@ $(document).ready(function() {
 			}
 			else
 			{
-				echo '<a href="admin/admin.php" style="display:none; !important;" class="xinchao">Xin chào:'.$_SESSION['username'].'</a>';
+				echo '<a href="admin/index.php" style="display:none; !important;" class="xinchao">Xin chào:'.$_SESSION['user_name'].'</a>';
 				echo '<a href="#login-box" class="login-window" style="display:block !important;">Đăng nhập/Đăng ký</a>
 ';
 

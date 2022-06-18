@@ -1,16 +1,3 @@
-<?php
-	session_start();
-	ini_set("display_errors","0");
-?>
-<?php
-
- // so san pham da add vao cart
-	$prd = 0;
-	if(isset($_SESSION['cart']))
-	{
-		$prd = count($_SESSION['cart']);
-	}
-?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -24,61 +11,9 @@
 <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js' type='text/javascript'></script>
 
 <title>Mỹ phẩm cao cấp | Chính hãng</title>
-<script>	
-	$(document).ready(function() {
-		function goBack(){
-				window.history.back();
-			}
-
-	});
-</script>
-<!----------------------------------------ĐĂNG NHẬP-------------------------------------------->
-<script type="text/javascript">
-$(document).ready(function() {
-	$('a.login-window').click(function() {
-		
-		// Getting the variable's value from a link 
-		var loginBox = $(this).attr('href');
-
-		//Fade in the Popup and add close button
-		$(loginBox).fadeIn(300);
-		
-		//Set the center alignment padding + border
-		var popMargTop = ($(loginBox).height() + 24) / 2; 
-		var popMargLeft = ($(loginBox).width() + 24) / 2; 
-		
-		$(loginBox).css({ 
-			'margin-top' : -popMargTop,
-			'margin-left' : -popMargLeft
-		});
-		
-		// Add the mask to body
-		$('body').append('<div id="mask"></div>');
-		$('#mask').fadeIn(300);
-		
-		return false;
-	});
-	
-	// When clicking on the button close or the mask layer the popup closed
-	$('a.close, #mask').live('click', function() { 
-	  $('#mask , .login-popup').fadeOut(300 , function() {
-		$('#mask').remove();  
-	}); 
-	return false;
-	});
-});
-</script>
-
 
 </head>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.7&appId=149524728806232";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+
 <body>
 
 <div id ="wrapper">
@@ -100,116 +35,12 @@ $(document).ready(function() {
 			?></a>
         </div><!--end logo-->
     	<div class="search">
-        	<form class="searchform" action="../index/search.php" method="get">
+        	<form class="searchform" action="search.php" method="get">
 			<input class="s" onfocus="if (this.value == 'Tìm kiếm …') {this.value = '';}" onblur="if (this.value == '') {this.value =		 		'Tìm kiếm …';}" type="text" name="timkiem" value="Tìm kiếm …" width="300px" />
         	<button class="searchsubmit" name="btTimkiem" type="submit" value=""> </button>
 			</form>
         </div><!-----end search---->
 
-<?php
-	if(isset($_POST["btSubmit"]))
-	{
-		$username= $_POST["username"];
-		$password =md5( $_POST["password"]);
-		//lam sach thong tin
-		$username = strip_tags($username);
-		$username = addslashes($username);
-		$password = strip_tags($password);
-		$password = addslashes($password);
-		if ($username == "" || $password =="")
-		{
-			echo '<div id="login-box" class="login-popup" style="display:block;left: 563px;top: 315px;">
-				
-				<a href="" class="close"><img src="../close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-				Không được để trống!
-				</div>
-				<div id="mask" style="display:block;opacity: 0.7 !important;background: #000 !important;"></div>';
-		}
-		else
-		{
-			$sql = "select * from account where user_name = '$username' and password = '$password' ";
-			$query = mysqli_query($conn,$sql);
-			$num_rows = mysqli_num_rows($query);
-			if ($num_rows==0) {
-				echo '<div id="login-box" class="login-popup" style="display:block;left: 495px;top: 315px;">
-				<a href="" class="close"><img src="../close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-				Tên đăng nhập hoặc mật khẩu không đúng !
-				</div>
-				<div id="mask" style="display:block;opacity: 0.7 !important;background: #000 !important;"></div>';
-			}
-			else
-			{
-				//tiến hành lưu tên đăng nhập vào session để tiện xử lý sau này
-				$_SESSION['username'] = $username;
-                // Thực thi hành động sau khi lưu thông tin vào session
-                // ở đây mình tiến hành chuyển hướng trang web tới một trang gọi là index.php
-                header('Location: ../san-pham/shopping-cart.php');
-			}
-		}
-	}
-?>
-        <div class="login">
-        <?php
-			$sql_query =mysqli_query($conn, "select * from account where user_name=".$_SESSION['user_name']);
-			$sql_it = mysqli_fetch_array($sql_query);
-			$level = $sql_it['level'];
-        	if (isset($_SESSION['username']))
-			{
-				if($level == '1')
-				{
-					echo '<a href="admin.php" style="display:block; !important;" class="xinchao">Xin chào: '.$_SESSION['username'].'
-				<div class="hv_member">
-          		<span class="exit"><a href="logout.php">Đăng xuất</a></span>
-         		 </div><!--end member-->
-				</a>';
-				}
-				else
-				{
-					echo '<a href="#" style="display:block; !important;" class="xinchao">Xin chào: '.$_SESSION['username'].'
-				<div class="hv_member">
-          		<span class="exit"><a href="logout.php">Đăng xuất</a></span>
-         		 </div><!--end member-->
-				</a>';
-				}
-				echo '<a href="#login-box" class="login-window" style="display:none !important;">Đăng nhập</a><a href="#" style="display:none !important;"> / Đăng ký</a>';
-			}
-			else
-			{
-				echo '<a href="../admin/admin.php" style="display:none; !important;" class="xinchao">Xin chào:'.$_SESSION['username'].'</a>';
-				echo '<a href="#login-box" class="login-window" style="display:block !important;">Đăng nhập/Đăng ký</a>
-';
-
-			}
-			
-		?>
-
-        </div><!--end login-->
-        <div id="login-box" class="login-popup">
-        	<a href="" class="close"><img src="../close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-          <form method="post" class="signin" action="register.php">
-                <fieldset class="textbox">
-                <span>Đăng nhập để đặt hàng!</span><br/>
-            	<label class="username">
-                <span>Tài khoản</span>
-               <input type="text" name="username" id="username" value=""/>
-                </label>
-                
-                <label class="password">
-                <span>Mật khẩu</span>
-                <input type="password" name="password" id="password" value="" />
-                </label>
-                
-                <button class="submit button" type="submit" name="btSubmit">Đăng nhập</button>
-                
-                <p>
-                <a class="forgot" href="#">Quên mật khẩu?</a> <a href="../admin/register.php" class="register">Đăng ký</a>
-                </p>
-                
-                
-                </fieldset>
-          </form>
-          
-		</div><!--end login-->
        	<div class="hotline">
         	<div class="ptittle">Hotline:</div><!--ptille-->
             <div class="pdetail">0984 114 827 - 0973 367 087</div><!--pdetail-->
@@ -336,10 +167,6 @@ $(document).ready(function() {
 							}
 							else
 							{}
-						
-						
-							
-							
 					
 						//END WHILE $submenu_items
 						
@@ -350,76 +177,6 @@ $(document).ready(function() {
 					echo "</ul></div>";				
 				}
 			?>
-            <div class="cart_div">
-            <a href="san-pham/shopping-cart.php" class="cart_top">
-            	<span class="count"><?php echo $prd; ?></span><!--end count-->
-    			<span class="tit">Giỏ hàng</span><!--end tit-->
-                    
-    		</a>
-            <div class="quick_cart">
-    <?php //cap nhat lai gia khi nhap vao so luong
-        if(isset($_POST['update_cart']))
-        {
-            foreach($_POST['num'] as $id => $prd)//prd la gia tri nhap vao.moi id tuong ung voi so luong nhap vao
-            {
-                if(($prd == 0) and (is_numeric($prd)))//nhap vao =0 thi xoa san pham do di
-                {
-                    unset($_SESSION['cart'][$id]);
-                }
-                elseif(($prd > 0) and (is_numeric($prd)))//nhap vao so luong >0  thi tiep tuc tinh
-                {
-                    $_SESSION['cart'][$id] = $prd;
-                }
-            }
-        }
-    ?>                
-    <form method="post">
-    <div class="cart_oder">
-            <ul class="top_cart">
-                <li class="sp">SẢN PHẨM </li>
-                <li class="dg">ĐƠN GIÁ</li>
-                <li class="sl">SỐ LƯỢNG</li>
-                <li class="tt">THÀNH TIỀN</li>
-            </ul>
-            <?php
-        $sum_all = 0;
-        $sum_sp = 0;
-        if($_SESSION['cart'] != NULL)
-        {
-            foreach($_SESSION['cart'] as $id =>$prd)
-            {
-                $arr_id[] = $id;
-            }
-            $str_id = implode(',',$arr_id);
-            $item_query = "SELECT * FROM  product WHERE id_product IN ($str_id) ORDER BY id_product ASC";
-            $item_result = mysqli_query($conn,$item_query) or die ('Cannot select table!');
-            while ($rows = mysqli_fetch_array($item_result))
-            {
-    ?>
-            <ul class="bottom_cart">
-                <li class="sp">
-                    <img src="../images/<?php echo $rows['image_product']; ?>" class="cartImg">
-                    <b class="Cart_title_pro"><?php echo $rows['name_product']; ?></b>
-                    <div class="delete_Cart"><a href="san-pham/delcart.php?id=<?php echo $rows['id_product']; ?>" class="del_sp">Bỏ sản phẩm</a></div>
-                    
-                </li>
-             <li class="dg"><?php echo number_format($rows['price_product']);?> VNĐ</li>
-            <li class="sl"> <input type="text" name ="num[<?php echo $rows['id_product']; ?>]" value="<?php echo $_SESSION['cart'][$rows['id_product']]; ?>" size="3" class="capnhatCartTxt"/></li>
-            <li class="tt"><?php echo number_format($rows['price_product']*$_SESSION['cart'][$rows['id_product']]); ?> VNĐ</li>
-            </ul>
-            
-    <?php			
-            }
-        }
-    ?>
-    
-    <div class="go_shopping">
-    	<input type="submit" name="update_cart" value="Cập nhật giỏ hàng" class="cap_nhat_cart"/>
-    	<a href="san-pham/shopping-cart.php" class="goa_shopping">CHUYỂN TỚI TRANG ĐẶT HÀNG</a></div>
-    </div><!--end cart_order-->
-	</form>
-                    </div><!--End Quick-->
-            </div><!--end cart_div-->
             </div><!--end nav-->
             
         </div><!--end container-->
@@ -428,32 +185,64 @@ $(document).ready(function() {
 <div class="navigation">
 </div>
 <div class="re-gis">
+	 <?php
+		
+    	if(isset($_POST['sbmit']))
+		{	
+			$sql = "SELECT * FROM `account` WHERE `user_name` = $tendn";
+			$dk_query = mysqli_query($conn,$sql);
+			
+			$hoten=$_POST['ht'];
+			$tendn=$_POST['tendn'];
+			$pw=md5($_POST['pw']);
+			$xnpw=md5($_POST['xnpw']);
+			$sdt=$_POST['sdt'];
+			$gt=$_POST['gt'];
+			$dcgh =$_POST['dcgh'];
+			
+			if( mysqli_num_rows($dk_query)>0){
+				echo "Tên đăng nhập này đã có người dùng. Vui lòng chọn tên đăng nhập khác.";
+			}else{
+				
+						if($pw == $xnpw)
+						{
+							$insert =mysqli_query($conn,"INSERT INTO account (ho_ten,gioi_tinh,dien_thoai,user_name,password,level,dia_chi) VALUE ('".$hoten."','".$gt."','".$sdt."','".$tendn."','".$pw."','3',N'".$dcgh."')");
+							echo '<script language="javascript">alert("Đăng ký thành công!"); window.location="index.php";</script>';
+						}
+						else
+						{
+							echo 'Xác nhận mật khẩu không trùng khớp!';
+						}
+			}
+		}
+	?>
 	<h1 class="DKTT"> ĐĂNG KÝ THÀNH VIÊN</h1>
-    <form action="register.php" method="post" name="formdk">
+    <form action="" method="post" name="formdk" role="form">
 		<table>
 			<tr>
 				<td>Họ và tên: </td>
-				<td><input type="text" name="ht" class="ht" /></td>
+				<td><input type="text" name="ht" class="ht" required/></td>
+				
 			</tr>
 			<tr>
 				<td>Tên đăng nhập: </td>
-				<td><input type="text" name="tendn" class="tdn"/></td>
+				<td><input type="text" name="tendn" class="tdn" required/></td>
 			</tr>
 			<tr>
 				<td>Mật khẩu: </td>
-				<td><input type="password" name="pw" class="pw"/></td>
+				<td><input type="password" name="pw" class="pw" required/></td>
 			</tr>
 			<tr>
 				<td>Xác nhận mật khẩu: </td>
-				<td><input type="password" name="xnpw" class="xnpw"/></td>
+				<td><input type="password" name="xnpw" class="xnpw" required/></td>
 			</tr>
 			<tr>
 				<td>Điện thoại: </td>
-				<td><input type="text" name="sdt" class="sdt"/></td>
+				<td><input type="number" name="sdt" class="sdt" required/></td>
 			</tr>
 			<tr>
 				<td>Địa chỉ giao hàng: </td>
-				<td><input type="text" name="dcgh" class="dcgh"/></td>
+				<td><input type="text" name="dcgh" class="dcgh" required/></td>
 			</tr>
 			<tr>
 				<td>Giới tính: </td>
@@ -465,56 +254,7 @@ $(document).ready(function() {
 			</tr>
 		</table>
     </form>
-    <?php
-    	if(isset($_POST['sbmit']))
-		{	
-			$dk_query = mysqli_query($conn,"SELECT * FROM account ");
-			$dk_items  = mysqli_fetch_array($dk_query);
-			$hoten=$_POST['ht'];
-			$tendn=$_POST['tendn'];
-			$pw=md5($_POST['pw']);
-			$xnpw=md5($_POST['xnpw']);
-			$sdt=$_POST['sdt'];
-			$gt=$_POST['gt'];
-			$dcgh =$_POST['dcgh'];
-			if(!$hoten || !$tendn || !$pw || !$xnpw || !$sdt || !$gt || !$dcgh)
-			{
-				
-				echo 'Vui lòng nhập thông tin đầy đủ!<a href="javascript: history.go(-1)">Trở lại</a>';
-				exit;
-			}
-			else
-			{
-				if ($dk_items['user_name'] == "$tendn")
-				{
-        			echo "Tên đăng nhập này đã có người dùng. Vui lòng chọn tên đăng nhập khác. <a href='javascript: history.go(-1)'>Trở lại</a>";
-        			exit;
-   				}
-				else
-				{
-					if("is_integer($sdt)" == false)
-					{
-						echo 'Số điện thoại nhập không đúng!<a href="javascript: history.go(-1)">Trở lại</a>';
-						exit;
-					}
-					else
-					{
-						if($pw == $xnpw)
-						{
-						$insert =mysqli_query($conn,"INSERT INTO account (ho_ten,gioi_tinh,dien_thoai,user_name,password,level,dia_chi) VALUE ('".$hoten."','".$gt."','".$sdt."','".$tendn."','".$pw."','3',N'".$dcgh."')");
-						echo "Đăng ký thành công!";
-						}
-						else
-						{
-							echo 'Xác nhận mật khẩu không trùng khớp!';
-						}
-					}
-				}
-			}
-			
-			
-		}
-	?>
+   
 </div><!--end re-gis-->
 
 <div class="clear10px"></div>

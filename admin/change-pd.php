@@ -148,7 +148,7 @@ if (!isset($_SESSION['username'])) {
 		$qr = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_row($qr);
 	?>
-    <form action="add-product.php" method="post" name="form_logo" enctype="multipart/form-data">
+    <form action="ad-product.php" method="post" name="form_logo" enctype="multipart/form-data">
     	<div class="add_image">
             
 			<table>
@@ -168,19 +168,65 @@ if (!isset($_SESSION['username'])) {
 				</tr>
 				<tr>
 					<td>Giá:</td>
-					<td colspan="2"><input type="text" style="margin-left: 0px" name="gia" size="5" class="gia" id="add_" value="<?php echo $row[3]?>"> VNĐ</td>
+					<td colspan="2"><input type="text" style="margin-left: 0px; width: 143px" name="gia" size="5" class="gia" id="add_" value="<?php echo $row[3]?>"> VNĐ</td>
 				</tr>
 				<tr>
 					<td>Loại sản phẩm:</td>
-					<td colspan="2"><input type="text" style="margin-left: 0px" name="lsp" size="15" class="lsp"  id="add_" value="<?php echo $row[5]?>"></td>
+					<td colspan="2">
+						<select name="lsp" class="lsp" id="add_" style="width: 150px">
+							<option value="<?php echo $row['5']?>"><?php echo $row['5']?></option>
+							<?php
+								$sql = "SELECT * FROM type_product";
+								$query = mysqli_query($conn, $sql);
+								$num = mysqli_num_rows($query);
+								if($num>0){
+									while($row3 = mysqli_fetch_array($query)){
+							?>
+							<option value="<?php echo $row3['1']?>"><?php echo $row3['1']?></option>
+							<?php
+									}
+								}
+							?>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td>Sử dụng cho:</td>
-					<td colspan="2"><input type="text" style="margin-left: 0px" name="sdc" size="15" class="sdc" id="add_" value="<?php echo $row[6]?>"></td>
+					<td colspan="2"><select name="sdc" class="sdc" id="add_" style="width: 150px">
+							<option value="<?php echo $row['6']?>"><?php echo $row['6']?></option>
+							<?php
+								$sql = "SELECT * FROM useful_product";
+								$query = mysqli_query($conn, $sql);
+								$num = mysqli_num_rows($query);
+								if($num>0){
+									while($row2 = mysqli_fetch_array($query)){
+							?>
+							<option value="<?php echo $row2['1']?>"><?php echo $row2['1']?></option>
+							<?php
+									}
+								}
+							?>
+						</select></td>
 				</tr>
 				<tr>
 					<td>Thuộc menu:</td>
-					<td colspan="2"><input type="text" style="margin-left: 0px" name="tmn" size="15" class="tmn" id="add_" value="<?php echo $row[7]?>"></td>
+					<td colspan="2"><select name="tmn" class="tmn" id="add_" style="width: 150px">
+							<option value="<?php echo $row['7']?>"><?php echo $row['7']?></option>
+							<?php
+								$sql = "SELECT * FROM `menu` WHERE `name_menu` not in (N'Trang chủ', N'Giới Thiệu')";
+								
+								$query = mysqli_query($conn, $sql);
+								$num = mysqli_num_rows($query);
+								if($num>0){
+									while($row1 = mysqli_fetch_array($query)){
+							?>
+							<option value="<?php echo $row1['1']?>"><?php echo $row1['1']?></option>
+							<?php
+									}
+								}
+							?>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td>Xuất xứ:</td>
@@ -188,7 +234,15 @@ if (!isset($_SESSION['username'])) {
 				</tr>
 				<tr>
 					<td>Quy cách:</td>
-					<td colspan="2"><input type="text" style="margin-left: 0px" name="qc" size="15" class="qc" id="add_" value="<?php echo $row[9]?>"></td>
+					<td colspan="2">
+						<select name="qc" class="qc" id="add_">
+							<option value="<?php echo $row[9]?>"><?php echo $row[9]?></option>
+							<option value="100ml">100ml</option>
+							<option value="200ml">200ml</option>
+							<option value="300ml">300ml</option>
+							<option value="400ml">400ml</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td>Tình trạng:</td>

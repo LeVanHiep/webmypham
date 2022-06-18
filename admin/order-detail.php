@@ -12,19 +12,13 @@
 	}
 ?>
 <?php
-			session_start();
-			if(isset($_SESSION['user_name']))
-			{
-			if($_SESSION['level']==3)
-			{
-				header("location:../index.php");
-			}
-			if($_SESSION['level']==1)
-			{
-				header("location:admin/index.php");
-			}
-			}
-		?>
+session_start();
+//tiến hành kiểm tra là người dùng đã đăng nhập hay chưa
+//nếu chưa, chuyển hướng người dùng ra lại trang đăng nhập
+if (!isset($_SESSION['username'])) {
+	 header('Location: ../index.php');
+}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -33,16 +27,17 @@
 <link rel="stylesheet" type="text/css" href="../css/style.css"/>
 <link rel="stylesheet" type="text/css" href="../css/reset.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
 <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js' type='text/javascript'></script>
+<script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
 <title>Mỹ phẩm cao cấp | Chính hãng</title>
-<script>	
-	$(document).ready(function() {
-		function goBack(){
-				window.history.back();
-			}
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.del').click(function(){
+		window.confirm("Bạn có muốn xóa không!") == true
 
-	});
-	
+		})
+});
 </script>
 </head>
 <body>
@@ -85,10 +80,10 @@
 			else
 			{
 				//tiến hành lưu tên đăng nhập vào session để tiện xử lý sau này
-				$_SESSION['user_name'] = $username;
+				$_SESSION['username'] = $username;
                 // Thực thi hành động sau khi lưu thông tin vào session
                 // ở đây mình tiến hành chuyển hướng trang web tới một trang gọi là index.php
-                header('Location: admin/index.php');
+                header('Location: admin/admin.php');
 			}
 		}
 	}
@@ -101,7 +96,7 @@
         <?php
         	if (isset($_SESSION['username']))
 			{
-				echo '<a href="admin/index.php" style="display:block; !important;" class="xinchao">Chào: '.$_SESSION['username'].'
+				echo '<a href="admin/admin.php" style="display:block; !important;" class="xinchao">Xin chào: '.$_SESSION['username'].'
 				<div class="hv_member">
           		<span class="exit"><a href="logout.php">Đăng xuất</a></span>
          		 </div><!--end member-->
@@ -111,8 +106,10 @@
 			}
 			else
 			{
-				echo '<a href="admin/index.php" style="display:none; !important;" class="xinchao">Xin chào:'.$_SESSION['user_name'].'</a>';
+				echo '<a href="admin/admin.php" style="display:none; !important;" class="xinchao">Xin chào:'.$_SESSION['username'].'</a>';
 				echo '<a href="#login-box" class="login-window" style="display:block !important;">Đăng nhập/Đăng ký</a>
+
+
 ';
 
 			}
@@ -134,7 +131,6 @@
                     <ul>
 						<li><a href="ad-product.php" >Danh sách sản phẩm</a></li>
                         <li><a href="add-product.php" >Thêm sản phẩm</a></li>
-                        
                     </ul>
                 </li>
 				<li><a href="hoa_don.php">Hóa đơn</a></li>
@@ -142,7 +138,106 @@
 
         </div>
 </div><!--end adleftbar-->
+<div class="right_barr">
+	<div class="htsp">
+<!--
+    	<ul class="ulhtsp">
+			<li class="stt">STT</li>
+			<li class="ndh">Người đặt hàng</li>
+        	<li class="date">Ngày đặt hàng</li>
+            <li class="sdt">Số điện thoại</li>
+            <li class="dc">Địa chỉ</li>
+			<li><a></a></li>
+        </ul>
+-->
+        
+        <?php 
+								$id = $_GET['id'];
+								// tong so records
+								$result =mysqli_query($conn,"select count(ma_don_hang) as total FROM don_hang WHERE don_hang.ma_don_hang = $id ORDER by ma_don_hang ASC");
+								$row = mysqli_fetch_assoc($result);
+								$total_records = $row['total'];
+								// tim limit va current 
+								$current_page = isset($_GET['page']) ? $_GET['page']:1;
+								$litmit =12;
+								$total_page =  ceil($total_records / $litmit);
+								if($current_page > $total_page )
+								{
+									$current_page = $total_page;
+								}
+								else if($current_page < 1 )
+								{
+									$current_page = 1;
+								}
+								$start = ($current_page - 1) * $litmit;
+								$result = mysqli_query($conn,"SELECT don_hang.* FROM don_hang WHERE don_hang.ma_don_hang = $id ORDER by ma_don_hang ASC LIMIT $start, $litmit");
+								
+				?>
 
+			<?php
+				
+			?>
+			<h1 style="color: white" align="center">HÓA ĐƠN</h1>
+			<table border="1" align="center">
+				<tr>
+                    <th>STT</th>
+					<th>Mã đơn hàng</th>
+                    <th>Mã sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Giá</th>
+                </tr>
+				<?php
+					$count = 1;
+					while ($row = mysqli_fetch_array($result))
+					{
+				?>
+				<tr>
+					<td><?php echo $count++ ?></td>
+					<td><?php echo $row['ma_don_hang'] ?></td>
+					<td><?php echo $row['id_product'] ?></td>
+					<td><?php echo $row['name_product'] ?></td>
+					<td><?php echo $row['so_luong'] ?></td>
+					<td><?php echo $row['tong_tien'] ?></td>
+				</tr>
+				<?php }?>
+			</table>
+
+            <div class="phan_trang" style="margin-left: 280px">
+            	<?php
+                	if($current_page > 1 && $total_page > 1)
+					{
+						echo "<a href='hoa_don.php?page=".($current_page - 1)."'>
+								<b class='prev'></b>
+							</a>";
+					}
+					echo"<ul class='ul_phan_page'>";
+					for($i = 1;$i <= $total_page;$i++)
+					{
+						
+						if($i == $current_page)
+						{
+							echo "<li><span class='color_current'>".$i."</span></li>";
+						}
+						else
+						echo "<li><a href='hoa_don.php?page=".$i."'>".$i."</a></li>";
+						
+					}
+					echo"</ul>";
+					if($current_page < $total_page  && $total_page > 1)
+					{
+						echo "<a href='ad-product.php?page=".($current_page + 1)."'>
+							<b class='next'></b>
+						</a>";
+					}
+					
+				?>
+            </div>
+<!--		end phan_page-->
+        
+        
+    </div><!--end htsp-->
+</div><!--end right barr-->
 </div><!--End Wrapper---> 
 </body>
 </html>
