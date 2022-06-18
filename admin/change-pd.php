@@ -130,6 +130,7 @@ if (!isset($_SESSION['username'])) {
                         <li><a href="add-product.php" >Thêm sản phẩm</a></li>
                         
                     </ul>
+					<li><a href="hoa_don.php">Hóa đơn</a></li>
                 </li>
             </ul>
 
@@ -148,7 +149,61 @@ if (!isset($_SESSION['username'])) {
 		$qr = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_row($qr);
 	?>
-    <form action="ad-product.php" method="post" name="form_logo" enctype="multipart/form-data">
+	<?php
+    	if(isset($_POST['ok']))// neu bien ok ton tai	
+		{
+			
+			if($_FILES['file']['name'] != NULL) //da chon file
+			{
+				if($_FILES['file']['type'] == "image/jpeg" || $_FILES['file']['type'] == "image/png" || $_FILES['file']['type'] == "image/gif")
+				{
+					if($_FILES['file']['size'] > 1048576 )
+					{
+						echo '<p class="uptc">File không được lớn hơn 1mb!</p>';
+					}
+					else
+					{// file hợp lệ, tiến hành upload
+						$path = "data/"; // file sẽ lưu vào thư mục data
+						$tmp_name = $_FILES['file']['tmp_name'];
+						$name = $_FILES['file']['name'];
+						$type = $_FILES['file']['type']; 
+						$size = $_FILES['file']['size']; 
+						$tensp = $_POST['tensp'];
+						$mieuta = $_POST['mieuta'];
+						$gia = $_POST['gia'];
+						$loaisp = $_POST['lsp'];
+						$sdc = $_POST['sdc'];
+						$thuocmenu = $_POST['tmn'];
+						$xx = $_POST['xx'];
+						$qc = $_POST['qc'];
+						$tt = $_POST['gia'];
+						$nd = $_POST['noidung'];
+						$tt =$_POST['1'];
+						$id = $_GET['id'];
+						// Upload file
+						move_uploaded_file($tmp_name,$path.$name);
+						echo '<p class="uptc">';
+						echo "File đã được upload thành công! <br />";
+						echo "Tên file : ".$tensp."<br />";
+						echo "Tên file : ".$name."<br />";
+						echo "Kiểu file : ".$type."<br />";
+						echo "File size : ".$size;
+						echo '</p>';
+						$upload_query =mysqli_query($conn,"UPDATE product SET name_product=N'".$tensp."',describe_product=N'".$mieuta."',noi_dung=N'".$nd."',price_product='".$gia."',image_product='".$name."',N'".$loaisp."',N'".$sdc."',N'".$thuocmenu."',N'".$xx."',N'".$qc."',N'".$tt."') WHERE id_product=".$id);
+					}
+				}
+				else
+				{
+					echo '<p class="uptc">Kiểu file không hợp lệ!</p>';
+				}
+			}
+			else
+			{
+				echo '<p class="uptc">THÔNG BÁO: Bạn chưa chọn tệp hình ảnh!</p>';
+			}
+		}
+	?>
+    <form action="change-pd.php" method="post" name="form_logo" enctype="multipart/form-data">
     	<div class="add_image">
             
 			<table>
@@ -259,60 +314,7 @@ if (!isset($_SESSION['username'])) {
 			</table>
         </div>
     </form>
-    <?php
-    	if(isset($_POST['ok']))// neu bien ok ton tai	
-		{
-			
-			if($_FILES['file']['name'] != NULL) //da chon file
-			{
-				if($_FILES['file']['type'] == "image/jpeg" || $_FILES['file']['type'] == "image/png" || $_FILES['file']['type'] == "image/gif")
-				{
-					if($_FILES['file']['size'] > 1048576 )
-					{
-						echo '<p class="uptc">File không được lớn hơn 1mb!</p>';
-					}
-					else
-					{// file hợp lệ, tiến hành upload
-						$path = "data/"; // file sẽ lưu vào thư mục data
-						$tmp_name = $_FILES['file']['tmp_name'];
-						$name = $_FILES['file']['name'];
-						$type = $_FILES['file']['type']; 
-						$size = $_FILES['file']['size']; 
-						$tensp = $_POST['tensp'];
-						$mieuta = $_POST['mieuta'];
-						$gia = $_POST['gia'];
-						$loaisp = $_POST['lsp'];
-						$sdc = $_POST['sdc'];
-						$thuocmenu = $_POST['tmn'];
-						$xx = $_POST['xx'];
-						$qc = $_POST['qc'];
-						$tt = $_POST['gia'];
-						$nd = $_POST['noidung'];
-						$tt =$_POST['1'];
-						$id = $_GET['id'];
-						// Upload file
-						move_uploaded_file($tmp_name,$path.$name);
-						echo '<p class="uptc">';
-						echo "File đã được upload thành công! <br />";
-						echo "Tên file : ".$tensp."<br />";
-						echo "Tên file : ".$name."<br />";
-						echo "Kiểu file : ".$type."<br />";
-						echo "File size : ".$size;
-						echo '</p>';
-						$upload_query =mysqli_query($conn,"UPDATE product SET name_product=N'".$tensp."',describe_product=N'".$mieuta."',noi_dung=N'".$nd."',price_product='".$gia."',image_product='".$name."',N'".$loaisp."',N'".$sdc."',N'".$thuocmenu."',N'".$xx."',N'".$qc."',N'".$tt."') WHERE id_product=".$id);
-					}
-				}
-				else
-				{
-					echo '<p class="uptc">Kiểu file không hợp lệ!</p>';
-				}
-			}
-			else
-			{
-				echo '<p class="uptc">THÔNG BÁO: Bạn chưa chọn tệp hình ảnh!</p>';
-			}
-		}
-	?>
+    
     
 </div><!--end right_bar-->
 </div><!--End Wrapper---> 

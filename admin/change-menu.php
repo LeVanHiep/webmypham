@@ -129,7 +129,9 @@ if (!isset($_SESSION['username'])) {
                         <li><a href="add-product.php" >Thêm sản phẩm</a></li>
                         
                     </ul>
+					
                 </li>
+				<li><a href="hoa_don.php">Hóa đơn</a></li>
             </ul>
 
         </div>

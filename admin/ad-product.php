@@ -132,6 +132,7 @@ $(document).ready(function() {
                         
                     </ul>
                 </li>
+				<li><a href="hoa_don.php">Hóa đơn</a></li>
             </ul>
 
         </div>
