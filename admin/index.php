@@ -13,7 +13,7 @@
 ?>
 <?php
 			session_start();
-			if(isset($_SESSION['user_name']))
+			if(isset($_SESSION['username']))
 			{
 			if($_SESSION['level']==3)
 			{

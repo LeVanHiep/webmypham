@@ -207,7 +207,7 @@
 						if($pw == $xnpw)
 						{
 							$insert =mysqli_query($conn,"INSERT INTO account (ho_ten,gioi_tinh,dien_thoai,user_name,password,level,dia_chi) VALUE ('".$hoten."','".$gt."','".$sdt."','".$tendn."','".$pw."','3',N'".$dcgh."')");
-							echo '<script language="javascript">alert("Đăng ký thành công!"); window.location="index.php";</script>';
+							echo '<script language="javascript">alert("Đăng ký thành công!"); window.location="../index.php";</script>';
 						}
 						else
 						{

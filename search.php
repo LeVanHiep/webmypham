@@ -485,7 +485,7 @@ $(function() {
             	<?php
                 	if($current_page > 1 && $total_page > 1)
 					{
-						echo "<a href='my-pham.php?page=".($current_page - 1)."'>
+						echo "<a href='search.php?page=".($current_page - 1)."'>
 								<b class='prev'></b>
 							</a>";
 					}
@@ -498,7 +498,7 @@ $(function() {
 							echo "<li><span class='color_current'>".$i."</span></li>";
 						}
 						else
-						echo "<li><a href='my-pham.php?page=".$i."'>".$i."</a></li>";
+						echo "<li><a href='search.php?page=".$i."'>".$i."</a></li>";
 						
 					}
 					echo"</ul>";
