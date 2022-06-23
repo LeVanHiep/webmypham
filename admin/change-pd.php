@@ -105,7 +105,7 @@ if (!isset($_SESSION['username'])) {
 			}
 			else
 			{
-				echo '<a href="admin/admin.php" style="display:none; !important;" class="xinchao">Xin chào:'.$_SESSION['username'].'</a>';
+				echo '<a href="admin/index.php" style="display:none; !important;" class="xinchao">Xin chào:'.$_SESSION['username'].'</a>';
 				echo '<a href="#login-box" class="login-window" style="display:block !important;">Đăng nhập/Đăng ký</a>
 ';
 
@@ -148,8 +148,6 @@ if (!isset($_SESSION['username'])) {
 		$sql = "SELECT * FROM product WHERE id_product = $id";
 		$qr = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_row($qr);
-	?>
-	<?php
     	if(isset($_POST['ok']))// neu bien ok ton tai	
 		{
 			
@@ -179,7 +177,6 @@ if (!isset($_SESSION['username'])) {
 						$tt = $_POST['gia'];
 						$nd = $_POST['noidung'];
 						$tt =$_POST['1'];
-						$id = $_GET['id'];
 						// Upload file
 						move_uploaded_file($tmp_name,$path.$name);
 						echo '<p class="uptc">';
@@ -213,8 +210,6 @@ if (!isset($_SESSION['username'])) {
 				</tr>
 				<tr>
 					<td >Chọn hình ảnh: </td>
-					<td><img src="../images/<?php echo $row[4];?>" id="img_thumbnail"/>
-					</td>
 					<td><input type="file" name="file" size="20" class="upload_logo" id="thumbnail" value="<?php echo $row[4];?>"></td>
 				</tr>
 				<tr>

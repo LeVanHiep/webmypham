@@ -19,6 +19,7 @@
 <link rel="stylesheet" type="text/css" href="css/reset.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
 <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js' type='text/javascript'></script>
+	
 <title>Mỹ phẩm cao cấp | Chính hãng</title>
 <script>	
 	$(document).ready(function() {
@@ -45,6 +46,41 @@ $(function() {
  		});
 });
 		
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('a.login-window').click(function() {
+		
+		// Getting the variable's value from a link 
+		var loginBox = $(this).attr('href');
+
+		//Fade in the Popup and add close button
+		$(loginBox).fadeIn(300);
+		
+		//Set the center alignment padding + border
+		var popMargTop = ($(loginBox).height() + 24) / 2; 
+		var popMargLeft = ($(loginBox).width() + 24) / 2; 
+		
+		$(loginBox).css({ 
+			'margin-top' : -popMargTop,
+			'margin-left' : -popMargLeft
+		});
+		
+		// Add the mask to body
+		$('body').append('<div id="mask"></div>');
+		$('#mask').fadeIn(300);
+		
+		return false;
+	});
+	
+	// When clicking on the button close or the mask layer the popup closed
+	$('a.close, #mask').live('click', function() { 
+	  $('#mask , .login-popup').fadeOut(300 , function() {
+		$('#mask').remove();  
+	}); 
+	return false;
+	});
+});
 </script>
 </head>
 
@@ -321,6 +357,68 @@ $(function() {
             	<span class="count">0</span><!--end count-->
     			<span class="tit">Giỏ hàng</span><!--end tit-->
     		</a>
+				<div class="quick_cart">
+    <?php //cap nhat lai gia khi nhap vao so luong
+        if(isset($_POST['update_cart']))
+        {
+            foreach($_POST['num'] as $id => $prd)//prd la gia tri nhap vao.moi id tuong ung voi so luong nhap vao
+            {
+                if(($prd == 0) and (is_numeric($prd)))//nhap vao =0 thi xoa san pham do di
+                {
+                    unset($_SESSION['cart'][$id]);
+                }
+                elseif(($prd > 0) and (is_numeric($prd)))//nhap vao so luong >0  thi tiep tuc tinh
+                {
+                    $_SESSION['cart'][$id] = $prd;
+                }
+            }
+        }
+    ?>                
+    <form method="post">
+    <div class="cart_oder">
+            <ul class="top_cart">
+                <li class="sp">SẢN PHẨM </li>
+                <li class="dg">ĐƠN GIÁ</li>
+                <li class="sl">SỐ LƯỢNG</li>
+                <li class="tt">THÀNH TIỀN</li>
+            </ul>
+            <?php
+        $sum_all = 0;
+        $sum_sp = 0;
+        if($_SESSION['cart'] != NULL)
+        {
+            foreach($_SESSION['cart'] as $id =>$prd)
+            {
+                $arr_id[] = $id;
+            }
+            $str_id = implode(',',$arr_id);
+            $item_query = "SELECT * FROM  product WHERE id_product IN ($str_id) ORDER BY id_product ASC";
+            $item_result = mysqli_query($conn,$item_query) or die ('Cannot select table!');
+            while ($rows = mysqli_fetch_array($item_result))
+            {
+    ?>
+            <ul class="bottom_cart">
+                <li class="sp">
+                    <img src="images/<?php echo $rows['image_product']; ?>" class="cartImg">
+                    <b class="Cart_title_pro"><?php echo $rows['name_product']; ?></b>
+                    <div class="delete_Cart"><a href="san-pham/delcart.php?id=<?php echo $rows['id_product']; ?>" class="del_sp">Bỏ sản phẩm</a></div>
+                    
+                </li>
+             <li class="dg"><?php echo number_format($rows['price_product']);?> VNĐ</li>
+            <li class="sl"> <input type="text" name ="num[<?php echo $rows['id_product']; ?>]" value="<?php echo $_SESSION['cart'][$rows['id_product']]; ?>" size="3" class="capnhatCartTxt"/></li>
+            <li class="tt"><?php echo number_format($rows['price_product']*$_SESSION['cart'][$rows['id_product']]); ?> VNĐ</li>
+            </ul>    
+    <?php			
+            }
+        }
+    ?>
+    
+    <div class="go_shopping">
+    	<input type="submit" name="update_cart" value="Cập nhật giỏ hàng" class="cap_nhat_cart"/>
+    	<a href="san-pham/shopping-cart.php" class="goa_shopping">CHUYỂN TỚI TRANG ĐẶT HÀNG</a></div>
+    </div><!--end cart_order-->
+	</form>
+                    </div><!--End Quick-->
             </div><!--end nav-->
             
         </div><!--end container-->
@@ -455,7 +553,7 @@ $(function() {
 									$current_page = 1;
 								}
 								$start = ($current_page - 1) * $litmit;
-								$result = mysqli_query($conn,"SELECT * FROM product where name_product LIKE '%".$search."%' LIMIT $start, $litmit");
+								$result = mysqli_query($conn,"SELECT * FROM product where name_product LIKE '%".$search."%' ORDER by `id_product` DESC LIMIT $start, $litmit");
 								
 				?>
                 <?php
@@ -504,7 +602,7 @@ $(function() {
 					echo"</ul>";
 					if($current_page < $total_page  && $total_page > 1)
 					{
-						echo "<a href='my-pham.php?page=".($current_page + 1)."'>
+						echo "<a href='search.php?page=".($current_page + 1)."'>
 							<b class='next'></b>
 						</a>";
 					}
