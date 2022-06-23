@@ -140,6 +140,7 @@ if (!isset($_SESSION['username'])) {
 	
 	<h1 class="tdlg">SỬA SẢN PHẨM</h1>
     <p class="huongdan">Hướng dẩn: Chọn hình ảnh và ấn Upload để thêm sản phẩm</p>
+	
 	<?php
 		if(isset($_GET['id'])){
 			$id = $_GET['id'];
@@ -147,84 +148,57 @@ if (!isset($_SESSION['username'])) {
 	
 		$sql = "SELECT * FROM product WHERE id_product = $id";
 		$qr = mysqli_query($conn, $sql);
-		$row = mysqli_fetch_row($qr);
-    	if(isset($_POST['ok']))// neu bien ok ton tai	
-		{
+		$row = mysqli_fetch_assoc($qr);
+		if(isset($_POST['capnhat'])){
+			$tensp = $_POST['tensp'];
+			if($_FILES['file']['name'] == ''){
+				$image = $row['image_product'];
+			}else{
+				$path = "data/";
+				$image = $_FILES['image']['name'];
+				$image_tmp = $_FILES['image']['tmp_name'];
+				move_uploaded_file($image_tmp,$path.$name);
+			}
+			$mieuta = $_POST['mieuta'];
+			$gia = $_POST['gia'];
+			$loaisp = $_POST['lsp'];
+			$sdc = $_POST['sdc'];
+			$thuocmenu = $_POST['tmn'];
+			$xx = $_POST['xx'];
+			$qc = $_POST['qc'];
+			$tt = $_POST['gia'];
+			$nd = $_POST['noidung'];
+			$tt =$_POST['1'];
 			
-			if($_FILES['file']['name'] != NULL) //da chon file
-			{
-				if($_FILES['file']['type'] == "image/jpeg" || $_FILES['file']['type'] == "image/png" || $_FILES['file']['type'] == "image/gif")
-				{
-					if($_FILES['file']['size'] > 1048576 )
-					{
-						echo '<p class="uptc">File không được lớn hơn 1mb!</p>';
-					}
-					else
-					{// file hợp lệ, tiến hành upload
-						$path = "data/"; // file sẽ lưu vào thư mục data
-						$tmp_name = $_FILES['file']['tmp_name'];
-						$name = $_FILES['file']['name'];
-						$type = $_FILES['file']['type']; 
-						$size = $_FILES['file']['size']; 
-						$tensp = $_POST['tensp'];
-						$mieuta = $_POST['mieuta'];
-						$gia = $_POST['gia'];
-						$loaisp = $_POST['lsp'];
-						$sdc = $_POST['sdc'];
-						$thuocmenu = $_POST['tmn'];
-						$xx = $_POST['xx'];
-						$qc = $_POST['qc'];
-						$tt = $_POST['gia'];
-						$nd = $_POST['noidung'];
-						$tt =$_POST['1'];
-						// Upload file
-						move_uploaded_file($tmp_name,$path.$name);
-						echo '<p class="uptc">';
-						echo "File đã được upload thành công! <br />";
-						echo "Tên file : ".$tensp."<br />";
-						echo "Tên file : ".$name."<br />";
-						echo "Kiểu file : ".$type."<br />";
-						echo "File size : ".$size;
-						echo '</p>';
-						$upload_query =mysqli_query($conn,"UPDATE product SET name_product=N'".$tensp."',describe_product=N'".$mieuta."',noi_dung=N'".$nd."',price_product='".$gia."',image_product='".$name."',N'".$loaisp."',N'".$sdc."',N'".$thuocmenu."',N'".$xx."',N'".$qc."',N'".$tt."') WHERE id_product=".$id);
-					}
-				}
-				else
-				{
-					echo '<p class="uptc">Kiểu file không hợp lệ!</p>';
-				}
-			}
-			else
-			{
-				echo '<p class="uptc">THÔNG BÁO: Bạn chưa chọn tệp hình ảnh!</p>';
-			}
+			$upload_query =mysqli_query($conn,"UPDATE product SET name_product=N'$tensp',describe_product=N'$mieuta',noi_dung=N'$nd',price_product='$gia',image_product='$image',type_product=N'$loaisp',useful_product=N'$sdc',parent_product=N'$thuocmenu',xuatxu=N'$xx',quy_cach=N'$qc',tinh_trang=N'$tt' WHERE id_product=$id");
+			header('location: ad-product.php');
 		}
 	?>
-    <form action="change-pd.php" method="post" name="form_logo" enctype="multipart/form-data">
+    <form method="post" name="form_logo" enctype="multipart/form-data">
     	<div class="add_image">
             
 			<table>
 				<tr>
 					<td>Tên sản phẩm:</td>
-					<td colspan="2"><input type="text" name="tensp" size="60" class="tensp" id="add_" value="<?php echo $row[1]?>"></td>
+					<td colspan="2"><input type="text" name="tensp" size="60" class="tensp" id="add_" value="<?php echo $row['name_product']?>"></td>
 				</tr>
 				<tr>
 					<td >Chọn hình ảnh: </td>
-					<td><input type="file" name="file" size="20" class="upload_logo" id="thumbnail" value="<?php echo $row[4];?>"></td>
+					<td><input type="file" name="file" size="20" class="upload_logo" id="thumbnail" value="<?php echo $row['image_product'];?>"></td>
 				</tr>
 				<tr>
 					<td>Miêu tả:</td>
-					<td colspan="2"><textarea cols="62" style="margin-left: 0px" rows="5" name="mieuta" class="mt" id="add_"><?php echo $row[2]?></textarea></td>
+					<td colspan="2"><textarea cols="62" style="margin-left: 0px" rows="5" name="mieuta" class="mt" id="add_"><?php echo $row['describe_product']?></textarea></td>
 				</tr>
 				<tr>
 					<td>Giá:</td>
-					<td colspan="2"><input type="text" style="margin-left: 0px; width: 143px" name="gia" size="5" class="gia" id="add_" value="<?php echo $row[3]?>"> VNĐ</td>
+					<td colspan="2"><input type="text" style="margin-left: 0px; width: 143px" name="gia" size="5" class="gia" id="add_" value="<?php echo $row['price_product']?>"> VNĐ</td>
 				</tr>
 				<tr>
 					<td>Loại sản phẩm:</td>
 					<td colspan="2">
 						<select name="lsp" class="lsp" id="add_" style="width: 150px">
-							<option value="<?php echo $row['5']?>"><?php echo $row['5']?></option>
+							<option value="<?php echo $row['5']?>"><?php echo $row['type_product']?></option>
 							<?php
 								$sql = "SELECT * FROM type_product";
 								$query = mysqli_query($conn, $sql);
@@ -243,7 +217,7 @@ if (!isset($_SESSION['username'])) {
 				<tr>
 					<td>Sử dụng cho:</td>
 					<td colspan="2"><select name="sdc" class="sdc" id="add_" style="width: 150px">
-							<option value="<?php echo $row['6']?>"><?php echo $row['6']?></option>
+							<option value="<?php echo $row['6']?>"><?php echo $row['useful_product']?></option>
 							<?php
 								$sql = "SELECT * FROM useful_product";
 								$query = mysqli_query($conn, $sql);
@@ -261,7 +235,7 @@ if (!isset($_SESSION['username'])) {
 				<tr>
 					<td>Thuộc menu:</td>
 					<td colspan="2"><select name="tmn" class="tmn" id="add_" style="width: 150px">
-							<option value="<?php echo $row['7']?>"><?php echo $row['7']?></option>
+							<option value="<?php echo $row['7']?>"><?php echo $row['parent_product']?></option>
 							<?php
 								$sql = "SELECT * FROM `menu` WHERE `name_menu` not in (N'Trang chủ', N'Giới Thiệu')";
 								
@@ -280,13 +254,13 @@ if (!isset($_SESSION['username'])) {
 				</tr>
 				<tr>
 					<td>Xuất xứ:</td>
-					<td colspan="2"><input type="text" name="xx" style="margin-left: 0px" size="15" class="xx" id="add_" value="<?php echo $row[8]?>"></td>
+					<td colspan="2"><input type="text" name="xx" style="margin-left: 0px" size="15" class="xx" id="add_" value="<?php echo $row['xuatxu']?>"></td>
 				</tr>
 				<tr>
 					<td>Quy cách:</td>
 					<td colspan="2">
 						<select name="qc" class="qc" id="add_">
-							<option value="<?php echo $row[9]?>"><?php echo $row[9]?></option>
+							<option value="<?php echo $row[9]?>"><?php echo $row['quy_cach']?></option>
 							<option value="100ml">100ml</option>
 							<option value="200ml">200ml</option>
 							<option value="300ml">300ml</option>
@@ -300,11 +274,11 @@ if (!isset($_SESSION['username'])) {
 				</tr>
 				<tr>
 					<td>Nội dung:</td>
-					<td colspan="2"><textarea name="noidung" id="editor1" rows="10" cols="80"><?php echo $row[10]?></textarea>
+					<td colspan="2"><textarea name="noidung" id="editor1" rows="10" cols="80"><?php echo $row['noi_dung']?></textarea>
             			<script>CKEDITOR.replace( 'editor1' );</script></td>
 				</tr>
 				<tr>
-					<th colspan="3" align="center"><input type="submit" name="ok" value="Upload" class="upload"></th>
+					<th colspan="3" align="center"><input type="submit" name="capnhat" value="Upload" class="upload"></th>
 				</tr>
 			</table>
         </div>
