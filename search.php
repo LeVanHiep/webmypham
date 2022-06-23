@@ -353,11 +353,13 @@ $(document).ready(function() {
 					echo "</ul></div>";				
 				}
 			?>
-            <a href="#" class="cart_top">
-            	<span class="count">0</span><!--end count-->
+            <div class="cart_div">
+            <a href="san-pham/shopping-cart.php" class="cart_top">
+            	<span class="count"><?php echo $prd; ?></span><!--end count-->
     			<span class="tit">Giỏ hàng</span><!--end tit-->
+                    
     		</a>
-				<div class="quick_cart">
+            <div class="quick_cart">
     <?php //cap nhat lai gia khi nhap vao so luong
         if(isset($_POST['update_cart']))
         {
@@ -419,6 +421,7 @@ $(document).ready(function() {
     </div><!--end cart_order-->
 	</form>
                     </div><!--End Quick-->
+            </div><!--end cart_div-->
             </div><!--end nav-->
             
         </div><!--end container-->
